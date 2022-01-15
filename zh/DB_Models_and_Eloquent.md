@@ -50,7 +50,7 @@
 46. [如何避免 property of non-object 错误](#如何避免-property-of-non-object-错误)
 47. [Eloquent 数据改变后获取原始数据](#Eloquent-数据改变后获取原始数据)
 48. [一种更简单创建数据库的方法](#一种更简单创建数据库的方法)
-49. [Query构造器的crossJoinSub方法](#Query构造器的crossJoinSub 方法)
+49. [Query构造器的crossJoinSub方法](#Query构造器的crossJoinSub方法)
 50. [belongsToMany的中间表命名](#belongsToMany的中间表命名)
 51. [根据Pivot字段排序](#根据Pivot字段排序)
 52. [从数据库中查询一条记录](#从数据库中查询一条记录)
