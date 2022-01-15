@@ -1,6 +1,6 @@
 ## 视图
 
-⬆️ [回到顶部](../REAME-zh.md) ⬅️ [上一个 (数据库迁移)](./Migrations.md) ➡️ [下一个 (路由)](./Routing.md)
+⬆️ [回到顶部](../README-zh.md) ⬅️ [上一个 (数据库迁移)](./Migrations.md) ➡️ [下一个 (路由)](./Routing.md)
 
 1. [foreach 语句中的 $loop 变量](#foreach-语句中的-$loop-变量)
 2. [视图是否存在](#视图是否存在)

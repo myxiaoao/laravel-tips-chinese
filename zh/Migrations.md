@@ -1,6 +1,6 @@
 ## 数据库迁移
 
-⬆️ [回到顶部](../REAME-zh.md) ⬅️ [上一个 (模型关联)](./Models_Relations.md) ➡️ [下一个 (视图)](./Views.md)
+⬆️ [回到顶部](../README-zh.md) ⬅️ [上一个 (模型关联)](./Models_Relations.md) ➡️ [下一个 (视图)](./Views.md)
 
 1. [无符号整型](#无符号整型)
 2. [迁移顺序](#迁移顺序)

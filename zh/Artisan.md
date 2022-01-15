@@ -1,6 +1,6 @@
 ## Artisan
 
-⬆️ [回到顶部](../REAME-zh.md) ⬅️ [上一个 (邮件)](./Mail.md) ➡️ [下一个 (工厂)](./Factories.md)
+⬆️ [回到顶部](../README-zh.md) ⬅️ [上一个 (邮件)](./Mail.md) ➡️ [下一个 (工厂)](./Factories.md)
 
 1. [Artisan 命令参数](#Artisan-命令参数)
 2. [维护模式](#维护模式)
