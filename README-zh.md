@@ -26,5 +26,5 @@ __更新于 2022/1/15:现在有259个小提示，分成14类.
 - [Artisan](./zh/Artisan.md) (5 提示)
 - [工厂](./zh/Factories.md) (6 提示)
 - [日志与调试](./zh/Log_and_Debug.md) (5 提示)
-- [API](./zh/Api.md) (3 提示)
+- [API](./zh/API.md) (3 提示)
 - [其他](./zh/Other.md) (54 提示)
