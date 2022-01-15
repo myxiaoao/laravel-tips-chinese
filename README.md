@@ -7,7 +7,7 @@ Hey, like these tips? Also check out my premium [Laravel courses](https://larave
 
 ---
 
-__Update 5 **January** 2022__: Currently there are __209 tips__ divided into 14 sections.
+__Update 15 **January** 2022__: Currently there are __259 tips__ divided into 14 sections.
 
 ## Table of Contents
 
