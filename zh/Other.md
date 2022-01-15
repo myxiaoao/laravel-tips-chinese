@@ -1,6 +1,6 @@
 ## 其他
 
-⬆️ [回到顶部](#Laravel-编码技巧) ⬅️ [上一个 (API)](#API) 
+⬆️ [回到顶部](../REAME-zh.md) ⬅️ [上一个 (API)](./API.md) 
 
 1. [localhost配置](#localhost配置)
 2. [何时运行或不运行composer-update](#何时运行或不运行composer-update)

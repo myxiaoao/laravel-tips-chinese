@@ -1,6 +1,6 @@
 ## 邮件
 
-⬆️ [回到顶部](#Laravel-编码技巧) ⬅️ [上一个 (授权)](#授权) ➡️ [下一个 (Artisan)](#Artisan)
+⬆️ [回到顶部](../REAME-zh.md) ⬅️ [上一个 (授权)](./Auth.md) ➡️ [下一个 (Artisan)](./Artisan.md)
 
 1. [测试邮件存入laravel.log](#测试邮件存入laravel.log)
 2. [预览邮件](#预览邮件)

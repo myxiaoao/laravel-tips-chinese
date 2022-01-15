@@ -1,6 +1,6 @@
 ## 模型关联
 
-⬆️ [回到顶部](#Laravel-编码技巧) ⬅️ [上一个 (数据库模型与 Eloquent)](#数据库模型与-Eloquent) ➡️ [下一个 (数据库迁移)](#数据库迁移)
+⬆️ [回到顶部](../REAME-zh.md) ⬅️ [上一个 (数据库模型与 Eloquent)](./DB_Models_and_Eloquent.md) ➡️ [下一个 (数据库迁移)](./Migrations.md)
 
 1. [在 Eloquent 关系中使用 OrderBy](#在-Eloquent-关系中使用-OrderBy)
 2. [在 Eloquent 关系中添加条件](#在-Eloquent-关系中添加条件)

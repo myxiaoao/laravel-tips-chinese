@@ -1,6 +1,6 @@
 ## 数据库模型与 Eloquent
 
-⬆️ [回到顶部](#Laravel-编码技巧) ➡️ [下一个 (模型关联)](#模型关联)
+⬆️ [回到顶部](../REAME-zh.md) ➡️ [下一个 (模型关联)](./DB_Models_and_Eloquent.md)
 
 1. [复用或克隆query](#复用或克隆query)
 2. [Eloquent where 日期方法](#Eloquent-where日期方法)
