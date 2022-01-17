@@ -3,16 +3,12 @@
 ⬆️ [Go to top](#laravel-tips) ⬅️ [Previous (Validation)](#validation) ➡️ [Next (Auth)](#auth)
 
 1. [Don’t Filter by NULL in Collections](#dont-filter-by-null-in-collections)
-
 2. [Use groupBy on Collections with Custom Callback Function](#use-groupby-on-collections-with-custom-callback-function)
-
 3. [Multiple Collection Methods in a Row](#multiple-collection-methods-in-a-row)
-
 4. [Calculate Sum with Pagination](#calculate-sum-with-pagination)
-
 5. [Serial no. in foreach loop with pagination](#serial-no-in-foreach-loop-with-pagination)
-
 6. [Higher order collection methods](#higher-order-collection-methods)
+7. [Higher order collection message](#higher-order-collection-message)
 
 ### Don’t Filter by NULL in Collections
 
@@ -91,10 +87,10 @@ We can use foreach collection items index as serial no (SL) in pagination.
 
 it will solve the issue of next pages(?page=2&...) index count from continue.
 
-### Higher order collection methods
+### Higher order collection message
 
-Collections have higher order methods, this are methods that can be chained , like `groupBy()` , `map()` ... Giving you a fluid syntax.  This example calculates the
-price per group of products on an offer.
+Collections also provide support for "higher order messages", which are short-cuts for performing common actions on collections.
+This example calculates the price per group of products on an offer.
 
 ```php
 $offer = [
@@ -109,6 +105,5 @@ $offer = [
         ]
 ];
                 
-$totalPerGroup = collect($offer->lines)->groupBy('group')->map(fn($group) => $group->sum('price')); 
+$totalPerGroup = collect($offer['lines'])->groupBy->group->map->sum('price');
 ```
-

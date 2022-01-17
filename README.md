@@ -7,17 +7,17 @@ Hey, like these tips? Also, check out my premium [Laravel courses](https://larav
 
 ---
 
-__Update 17 **January** 2022__: Currently there are __255 tips__ divided into 14 sections.
+__Update 17 **January** 2022__: Currently there are __257 tips__ divided into 14 sections.
 
 ## Table of Contents
 
-- [DB Models and Eloquent](./en/DB_Models_and_Eloquent.md) (70 提示)
+- [DB Models and Eloquent](./en/DB_Models_and_Eloquent.md) (71 提示)
 - [Models Relations](./en/Models_Relations.md) (32 提示)
 - [Migrations](./en/Migrations.md) (13 提示)
 - [Views](./en/Views.md) (15 提示)
 - [Routing](./en/Routing.md) (23 提示)
 - [Validation](./en/Validation.md) (17 提示)
-- [Collections](./en/Collections.md) (6 提示)
+- [Collections](./en/Collections.md) (7 提示)
 - [Auth](./en/Auth.md) (5 提示)
 - [Mail](./en/Mail.md) (5 提示)
 - [Artisan](./en/Artisan.md) (5 提示)

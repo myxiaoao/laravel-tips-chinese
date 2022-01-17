@@ -8,6 +8,7 @@
 4. [对分页集合求和](#对分页集合求和)
 5. [分页组件中的唯一标识](#分页组件中的唯一标识)
 6. [高阶集合方法](#高阶集合方法)
+7. [Higher order collection message](#higher-order-collection-message)
 
 ### 不要使用NULL过滤集合
 
@@ -105,3 +106,24 @@ $offer = [
 $totalPerGroup = collect($offer->lines)->groupBy('group')->map(fn($group) => $group->sum('price')); 
 ```
 
+### 高阶集合排序
+
+集合还支持“高阶排序”，这是对集合执行常见操作的捷径。
+
+此示例计算报价中每组产品的价格。
+
+```php
+$offer = [
+        'name'  => 'offer1',
+        'lines' => [
+            ['group' => 1, 'price' => 10],
+            ['group' => 1, 'price' => 20],
+            ['group' => 2, 'price' => 30],
+            ['group' => 2, 'price' => 40],
+            ['group' => 3, 'price' => 50],
+            ['group' => 3, 'price' => 60]
+        ]
+];
+                
+$totalPerGroup = collect($offer['lines'])->groupBy->group->map->sum('price');
+```
