@@ -1,5 +1,7 @@
 # Laravel 编码技巧
 
+中文版本由于英文版本翻译不定期 因此更新可能与英文版不同步。望谅解!
+
 为所有的`Laravel`开发者们提供的 `Laravel` 提示和技巧。欢迎PR 提供好点子!
 
 想法由[PovilasKorop](https://github.com/PovilasKorop) and [MarceauKa](https://github.com/MarceauKa) 提供.
