@@ -18,7 +18,7 @@ __更新于 2022/1/17:现在有253个小提示，分成14类.
 - [模型关联](./zh/Models_Relations.md) (32 提示)
 - [数据库迁移](./zh/Migrations.md) (13 提示)
 - [视图](./zh/Views.md) (15 提示)
-- [路由](./zh/Routing.md) (22 提示)
+- [路由](./zh/Routing.md) (23 提示)
 - [验证](./zh/Validation.md) (17 提示)
 - [集合](./zh/Collections.md) (6 提示)
 - [授权](./zh/Auth.md) (5 提示)

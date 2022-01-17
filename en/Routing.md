@@ -3,48 +3,28 @@
 ⬆️ [Go to top](#laravel-tips) ⬅️ [Previous (Views)](#views) ➡️ [Next (Validation)](#validation)
 
 1. [Route group within a group](#route-group-within-a-group)
-
 2. [Wildcard subdomains](#wildcard-subdomains)
-
 3. [What's behind the routes?](#whats-behind-the-routes)
-
 4. [Route Model Binding: You can define a key](#route-model-binding-you-can-define-a-key)
-
 5. [Quickly Navigate from Routes file to Controller](#quickly-navigate-from-routes-file-to-controller)
-
 6. [Route Fallback: When no Other Route is Matched](#route-fallback-when-no-other-route-is-matched)
-
 7. [Route Parameters Validation with RegExp](#route-parameters-validation-with-regexp)
-
 8. [Rate Limiting: Global and for Guests/Users](#rate-limiting-global-and-for-guestsusers)
-
 9. [Query string parameters to Routes](#query-string-parameters-to-routes)
-
 10. [Separate Routes by Files](#separate-routes-by-files)
-
 11. [Translate Resource Verbs](#translate-resource-verbs)
-
 12. [Custom Resource Route Names](#custom-resource-route-names)
-
 13. [More Readable Route List](#more-readable-route-list)
-
 14. [Eager load relationship](#eager-load-relationship)
-
 15. [Localizing Resource URIs](#localizing-resource-uris)
-
 16. [Resource Controllers naming](#resource-controllers-naming)
-
 17. [Easily highlight your navbar menus](#easily-highlight-your-navbar-menus)
-
 18. [Generate absolute path using route() helper](#generate-absolute-path-using-route-helper)
-
 19. [Override the route binding resolver for each of your models](#override-the-route-binding-resolver-for-each-of-your-models)
-
 20. [If you need public URL but you want them to be secured](#if-you-need-public-url-but-you-want-them-to-be-secured)
-
 21. [Using Gate in middleware method](#using-gate-in-middleware-method)
-
-22. [Simple route with arrow function](#simple-route-with-arrow-function)
+22. [Simple route with arrow function](#Simple route with arrow function)
+23. [Return a view directly from a route](#route-view)
 
 ### Route group within a group
 
@@ -551,3 +531,11 @@ Route::get('/example', function () {
 Route::get('/example', fn () => User::all());
 ```
 
+### Route view 
+You can use `Route::view($uri , $bladePage)` to return a view directly, without having to use controller function.
+
+
+```php
+//this will return home.blade.php view
+Route::view('/home', 'home');
+```

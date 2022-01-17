@@ -24,6 +24,7 @@
 20. [如果你需要一个公共URL但是你想让他们更安全](#如果你需要一个公共URL但是你想让他们更安全)
 21. [在中间件中使用Gate](#在中间件中使用Gate)
 22. [简单路由-使用箭头函数](#简单路由-使用箭头函数)
+23. [路由视图](#路由视图)
 
 ### 分组中的分组
 
@@ -530,3 +531,11 @@ Route::get('/example', function () {
 Route::get('/example', fn () => User::all());
 ```
 
+### 路由视图
+使用`Route::view($uri , $bladePage)`直接返回view 而不需要控制器方法
+
+
+```php
+//this will return home.blade.php view
+Route::view('/home', 'home');
+```
