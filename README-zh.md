@@ -8,13 +8,13 @@
 
 ---
 
-__更新于 2022/1/17:现在有254个小提示，分成14类.
+__更新于 2022/1/17:现在有255个小提示，分成14类.
 
 
 
 ## 目录
 
-- [数据库模型与 Eloquent](./zh/DB_Models_and_Eloquent.md) (69 提示)
+- [数据库模型与 Eloquent](./zh/DB_Models_and_Eloquent.md) (70 提示)
 - [模型关联](./zh/Models_Relations.md) (32 提示)
 - [数据库迁移](./zh/Migrations.md) (13 提示)
 - [视图](./zh/Views.md) (15 提示)

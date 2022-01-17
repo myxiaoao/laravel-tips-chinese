@@ -72,6 +72,7 @@
 70. [从第一个结果中获取单列的值](#从第一个结果中获取单列的值)
 71. [检测模型属性是否被修改](#检测模型属性是否被修改)
 70. [定义访问器与修改器的新方法](#定义访问器与修改器的新方法)
+71. [另外一种定义访问器与修改器的方法](#另外一种定义访问器与修改器的方法)
 
 ### 复用或克隆query
 
@@ -1395,4 +1396,55 @@ protected function title(): Attribute
 ```
 
 Tip given by [@Teacoders](https://twitter.com/Teacoders/status/1473697808456851466)
+
+### 另外一种定义访问器与修改器的方法
+
+在一些模型中想用同样的修改器 访问器 可以自定义转换。
+
+只需要创建一个类 实现 ``CastsAttributes` 实现两个方法
+
+- get 标识模型应当从数据库如何拿到
+- set 标识数据应当如何存储到数据库
+
+```php
+<?php
+namespace App\Casts;
+use Carbon\Carbon;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+class TimestampsCast implements CastsAttributes
+{
+    public function get($model, string $key, $value, array $attributes)
+    {
+        return Carbon::parse($value)->diffForHumans();
+    }
+    public function set($model, string $key, $value, array $attributes)
+    {
+        return Carbon::parse($value)->format('Y-m-d h:i:s');
+    }
+}
+```
+
+然后你可以在模型中实现这个转换
+
+```php
+<?php
+namespace App\Models;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Casts\TimestampsCast;
+use Carbon\Carbon;
+class User extends Authenticatable
+{
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'updated_at' => TimestampsCast::class,
+        'created_at' => TimestampsCast::class,
+    ];
+}
+```
+
+[@AhmedRezk]提供
 
