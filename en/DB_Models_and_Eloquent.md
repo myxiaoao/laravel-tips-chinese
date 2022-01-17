@@ -59,7 +59,6 @@
 55. [Periodic cleaning of models from obsolete records](#periodic-cleaning-of-models-from-obsolete-records)
 56. [Immutable dates and casting to them](#immutable-dates-and-casting-to-them)
 57. [The findOrFail method also accepts a list of ids](#the-findorfail-method-also-accepts-a-list-of-ids)
-
 58. [Prunable trait to automatically remove models from your database](#prunable-trait-to-automatically-remove-models-from-your-database)
 59. [withAggregate method](#withaggregate-method)
 60. [Date convention](#date-convention)
@@ -68,11 +67,11 @@
 64. [Custom casts](#custom-casts)
 66. [Order based on a related model's average or count](#order-based-on-a-related-models-average-or-count)
 67. [Return transactions result](#return-transactions-result)
-68. [Remove several global scopes from query](#remove-several-global-scopes-from-query)
-
+66. [Remove several global scopes from query](#remove-several-global-scopes-from-query)
 69. [Order JSON column attribute](#order-JSON-column-attribute)
 70. [Get single column's value from the first result](#get-single-columns-value-from-the-first-result)
 71. [Check if altered value changed key](#check-if-altered-value-changed-key)
+70. [New way to define accessor and mutator](#new-way-to-define-accessor-and-mutator)
 
 ### Reuse or clone query()
 
@@ -1344,4 +1343,31 @@ $user->fill(['name' => 'David']); // Or set via fill
 $user->originalIsEquivalent('name'); // false
 ```
 
-Tip given by [@mattkingshott](
+Tip given by [@mattkingshott]
+
+### New way to define accessor and mutator
+
+New way to define attribute accessors and mutators in Laravel 8.77:
+
+```php
+// Before, two-method approach
+public function setTitleAttribute($value)
+{
+    $this->attributes['title'] = strtolower($value);
+}
+public function getTitleAttribute($value)
+{
+    return strtoupper($value);
+}
+ 
+// New approach
+protected function title(): Attribute
+{
+    return new Attribute(
+        get: fn ($value) => strtoupper($value),
+        set: fn ($value) => strtolower($value),
+}
+```
+
+Tip given by [@Teacoders](https://twitter.com/Teacoders/status/1473697808456851466)
+

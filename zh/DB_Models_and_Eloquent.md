@@ -57,8 +57,7 @@
 53. [记录自动分块](#记录自动分块)
 55. [定时清理过期记录中的模型](#定时清理过期记录中的模型)
 56. [不变的日期和对它们的强制转换](#不变的日期和对它们的强制转换)
-57. [findorfail方法也接收ids数组](#findorfail方法也接收ids数组)
-
+56. [findorfail方法也接收ids数组](#findorfail方法也接收ids数组)
 58. [从你的数据库中自动移除模型prunableTrait](#从你的数据库中自动移除模型prunableTrait)
 60. [日期转换](#日期转换)
 61. [多模型更新/插入](#多模型更新插入)
@@ -68,11 +67,11 @@
 65. [保存中不要触发事件](#保存中不要触发事件)
 66. [基于相关模型的平均值或总数排序](#基于相关模型的平均值或总数排序)
 67. [返回事务结果](#返回事务结果)
-68. [从query中移除多个公共scope](#从query中移除多个公共scope)
-
+66. [从query中移除多个公共scope](#从query中移除多个公共scope)
 69. [JSON列属性排序](#JSON列属性排序)
 70. [从第一个结果中获取单列的值](#从第一个结果中获取单列的值)
 71. [检测模型属性是否被修改](#检测模型属性是否被修改)
+70. [定义访问器与修改器的新方法](#定义访问器与修改器的新方法)
 
 ### 复用或克隆query
 
@@ -1370,3 +1369,30 @@ $user->originalIsEquivalent('name'); // false
 ```
 
 由 [@mattkingshott]提供
+
+### 定义访问器与修改器的新方法
+
+Laravel 8.77:定义访问器与修改器的新方法 
+
+```php
+// Before, two-method approach
+public function setTitleAttribute($value)
+{
+    $this->attributes['title'] = strtolower($value);
+}
+public function getTitleAttribute($value)
+{
+    return strtoupper($value);
+}
+ 
+// New approach
+protected function title(): Attribute
+{
+    return new Attribute(
+        get: fn ($value) => strtoupper($value),
+        set: fn ($value) => strtolower($value),
+}
+```
+
+Tip given by [@Teacoders](https://twitter.com/Teacoders/status/1473697808456851466)
+

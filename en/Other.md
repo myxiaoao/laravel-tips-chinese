@@ -3,63 +3,34 @@
 ⬆️ [Go to top](#laravel-tips) ⬅️ [Previous (API)](#api)
 
 1. [Localhost in .env](#localhost-in-env)
-
 2. [When (NOT) to run "composer update"](#when-not-to-run-composer-update)
-
 3. [Composer: check for newer versions](#composer-check-for-newer-versions)
-
 4. [Auto-Capitalize Translations](#auto-capitalize-translations)
-
 5. [Carbon with Only Hours](#carbon-with-only-hours)
-
 6. [Single Action Controllers](#single-action-controllers)
-
 7. [Redirect to Specific Controller Method](#redirect-to-specific-controller-method)
-
 8. [Use Older Laravel Version](#use-older-laravel-version)
-
 9. [Add Parameters to Pagination Links](#add-parameters-to-pagination-links)
-
 10. [Repeatable Callback Functions](#repeatable-callback-functions)
-
 11. [Request: has any](#request-has-any)
-
 12. [Simple Pagination](#simple-pagination)
-
 13. [Data Get Function](#data-get-function)
-
 14. [Blade directive to add true/false conditions](#blade-directive-to-add-truefalse-conditions)
-
 15. [Jobs can be used without queues](#jobs-can-be-used-without-queues)
-
 16. [Use faker outside factories or seeders](#use-faker-outside-factories-or-seeders)
-
 17. [Schedule things](#schedule-things)
-
 18. [Search Laravel docs](#search-laravel-docs)
-
 19. [Filter route:list](#filter-routelist)
-
 20. [Blade directive for not repeating yourself](#blade-directive-for-not-repeating-yourself)
-
 21. [Artisan commands help](#artisan-commands-help)
-
 22. [Disable lazy loading when running your tests](#disable-lazy-loading-when-running-your-tests)
-
 23. [Using two amazing helpers in Laravel will bring magic results](#using-two-amazing-helpers-in-laravel-will-bring-magic-results)
-
 24. [Request parameter default value](#request-parameter-default-value)
-
 25. [Pass middleware directly into the route without register it](#pass-middleware-directly-into-the-route-without-register-it)
-
 26. [Transforming an array to CssClasses](#transforming-an-array-to-cssclasses)
-
 27. ["upcomingInvoice" method in Laravel Cashier (Stripe)](#upcominginvoice-method-in-laravel-cashier-stripe)
-
 28. [Laravel Request exists() vs has()](#laravel-request-exists-vs-has)
-
 29. [There are multiple ways to return a view with variables](#there-are-multiple-ways-to-return-a-view-with-variables)
-
 30. [Schedule regular shell commands](#schedule-regular-shell-commands)
 31. [HTTP client request without verifying](#HTTP-client-request-without-verifying)
 32. [Test that doesn't assert anything ](#test-that-doesnt-assert-anything)
@@ -80,6 +51,7 @@
 52. [Get value from session and forget](#get-value-from-session-and-forget)
 53. [$request->date() method](#request-date-method)
 54. [Use through instead of map when using pagination](#use-through-instead-of-map-when-using-pagination)
+50. [New way to define accessor and mutator](#new-way-to-define-accessor-and-mutator)
 
 ### Localhost in .env
 

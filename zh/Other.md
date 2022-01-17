@@ -51,6 +51,7 @@
 52. [获取并删除session](#获取并删除session)
 53. [request的date方法](#request的date方法)
 54. [使用分页时请使用through而不是map](#使用分页时请使用through而不是map)
+50. [定义访问器与修改器的新方法](#定义访问器与修改器的新方法)
 
 ### localhost配置
 

@@ -54,7 +54,9 @@ Route::domain('{username}.workspace.com')->group(function () {
 
 ### routes调用之后是什么
 
-从 Laravel 7 之后，它被分在一个单独的包中，你可以查阅文件 `/vendor/laravel/ui/src/AuthRouteMethods.php`。
+若你使用 [Laravel UI package](https://github.com/laravel/ui), 你可能想知道`Auth::routes()`定义之后真正的路由是什么?
+
+查看 `/vendor/laravel/ui/src/AuthRouteMethods.php`.
 
 ```php
 public function auth()
@@ -85,7 +87,28 @@ public function auth()
 }
 ```
 
-Laravel 7 之前，请查阅  `/vendor/laravel/framework/src/illuminate/Routing/Router.php`。
+默认调用:
+
+```php
+Auth::routes(); // no parameters
+```
+
+但是你可以提供参数来启用或禁用真正的路由
+
+But you can provide parameters to enable o disable certain routes:
+
+```php
+Auth::routes([
+    'login'    => true,
+    'logout'   => true,
+    'register' => true,
+    'reset'    => true,  // for resetting passwords
+    'confirm'  => false, // for additional password confirmations
+    'verify'   => false, // for email verification
+]);
+```
+
+由 [suggestion](https://github.com/LaravelDaily/laravel-tips/pull/57) by [MimisK13](https://github.com/MimisK13)提供
 
 ### 路由模型绑定-你可以定义一个Key
 
