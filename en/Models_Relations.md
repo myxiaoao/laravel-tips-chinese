@@ -576,7 +576,7 @@ Tip given by [@sky_0xs](https://twitter.com/sky_0xs/status/1461414850341621760)
 
 ### Relation that will get the newest (or oldest) item
 
-In an Eloquent model can define a relation that will get the newest (or oldest) item of another relation.
+New in Laravel 8.42:In an Eloquent model can define a relation that will get the newest (or oldest) item of another relation.
 
 ```php
 public function historyItems(): HasMany

@@ -38,7 +38,6 @@
 34. [扩展Laravel类](#扩展Laravel类)
 35. [Can特性](#Can特性)
 36. [临时下载url](#临时下载url)
-37. [显示发布版本](#显示发布版本)
 38. [处理深度嵌套数组](#处理深度嵌套数组)
 39. [自定义异常的呈现方式](#自定义异常的呈现方式)
 40. [tap助手函数](#tap助手函数)
@@ -48,10 +47,6 @@
 44. [清理你臃肿的路由文件](#清理你臃肿的路由文件)
 45. [自定义邮件日志存储位置](#自定义邮件日志存储位置)
 46. [markdown简单创建](#markdown简单创建)
-47. [使用WhenFill帮助程序简化请求](#使用WhenFill帮助程序简化请求)
-48. [如果您需要收听许多事件请使用观察者](#如果您需要收听许多事件请使用观察者)
-49. [使用abortxxx帮助抛出HTTP异常并在应用程序的任何层停止执行](#使用abortxxx帮助抛出HTTP异常并在应用程序的任何层停止执行)
-50. [Laravel的链魔法](#Laravel的链魔法)
 51. [给中间件传参数](#给中间件传参数)
 52. [获取并删除session](#获取并删除session)
 53. [request的date方法](#request的date方法)
@@ -653,12 +648,6 @@ public function download(File $file)
 
 [@Philo01](https://twitter.com/Philo01/status/1458791323889197064)
 
-### 显示发布版本
-
-要在您的Laravel应用程序中显示发布版本（例如页脚）？
-
-在`config/app`中创建`version.php`，然后在blade模板中使用`{config（'app.version'）}}`引用它
-
 ### 处理深度嵌套数组
 
 处理深度嵌套数组可能会导致缺少键/值异常。幸运的是，Laravel的data_get（）助手使这一点很容易避免。它还支持深度嵌套的对象<br>
@@ -853,79 +842,6 @@ Output:
 ```
 
 [@paulocastellano](https://twitter.com/paulocastellano/status/1467478502400315394)
-
-### 使用WhenFill帮助程序简化请求
-
-我们经常编写if语句来检查请求中是否存在值<br>
-
-您可以使用whenFilled帮助程序简化它。
-
-```php
-public function store(Request $request)
-{
-    $request->whenFilled('status', function (string $status)) {
-        // Do something amazing with the status here!
-    }, function () {
-        // This it called when status is not filled
-    });
-}
-```
-
-[@mmartin_joo](https://twitter.com/mmartin_joo/status/1467886802711293959)
-
-### 如果您需要收听许多事件请使用观察者
-
-如果您需要在#laravel中收听来自同一模型的许多事件，最好使用#观察者<br>
-
-在本例中，每次更新我都刷新用户缓存。
-
-```php
-class UserObserver
-{
-    public function updated(User $user)
-    {
-        UpdateUserCache::dispatch($user);
-    }
-}
-```
-
-[@paulocastellano](https://twitter.com/paulocastellano/status/1468277233332756481)
-
-### 使用abortxxx帮助抛出HTTP异常并在应用程序的任何层停止执行
-
-使用'abort'、'abort_if' 和 `abort_inspect`帮助抛出HTTP异常并在应用程序的任何层停止执行。
-
-```php
-class DeletePodcastAction
-{
-    public function execure(User $user, Podcast $podcast)
-    {
-        if (! $podcast->owner($user)) {
-            abort(403, 'You do not own this podcast');
-        }
-    }
-}
-```
-
-Laravel also includes the usefull `abort_if` and `abort_unless` helpers, which we can use to simplify any conditionals
-
-```php
-abort_if($podcast->isLive(), 403, 'The podcast is currently streaming');
-abort_unless($podcast->owner($user), 403, 'You do not own this podcast');
-```
-
-[@mattkingshott](https://twitter.com/mattkingshott/status/1470423275658481673)
-
-### Laravel的链魔法
-
-```php
-// instead of...
-collect(request('sales'))->filter('qty');
-// you can...
-request()->collect('sales')->filter('qty');
-```
-
-[@rcubitto](https://twitter.com/rcubitto/status/1471557340537180177)
 
 ### 给中间件传参数
 

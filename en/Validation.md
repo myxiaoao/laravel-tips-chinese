@@ -313,6 +313,13 @@ when using Form Requests for validation, by default the validation error will re
 Just define the property of `$redirect` or `$redirectRoute`.<br>
 [Link to docs](https://laravel.com/docs/8.x/validation#customizing-the-redirect-location)
 
+```php
+// The URI that users should be redirected to if validation fails./
+protected $redirect = '/dashboard';
+// The route that users should be redirected to if validation fails.
+protected $redirectRoute = 'dashboard';
+```
+
 ### Mac validation rule
 
 New mac_address validation rule added in Laravel 8.77

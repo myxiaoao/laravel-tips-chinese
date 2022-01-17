@@ -65,9 +65,7 @@
 60. [Date convention](#date-convention)
 61. [Eloquent multiple upserts](#eloquent-multiple-upserts)
 62. [Retrieve the Query Builder after filtering the results](#retrieve-the-query-builder-after-filtering-the-results)
-63. [When you're counting related models, opt for aggregates](#when-youre-counting-related-models-opt-for-aggregates)
 64. [Custom casts](#custom-casts)
-65. [Don't trigger events when saving](#dont-trigger-events-when-saving)
 66. [Order based on a related model's average or count](#order-based-on-a-related-models-average-or-count)
 67. [Return transactions result](#return-transactions-result)
 68. [Remove several global scopes from query](#remove-several-global-scopes-from-query)
@@ -1234,26 +1232,6 @@ if ($nthUsers->isNotEmpty()) {
 
 Tip given by [@RBilloir](https://twitter.com/RBilloir/status/1462529494917566465)
 
-### When you're counting related models, opt for aggregates
-
-When you're counting related models, opt for aggregates!<br>
-Thumbs down Using the `count()` method on a  collection of related models is a tad slower.
-
-```php
-// In your controller
-$user = User::withCount('articles');
-// Or, to add a constraint to the aggregate
-$user = User::withCount([
-    'articles' => fn ($query) => $query->live();
-]);
-// In your view
-$user->articles_count
-// Instead of
-$user->articles->count();
-```
-
-Tip given by [@alexjgarrett](https://twitter.com/alexjgarrett/status/1462753602385108995)
-
 ### Custom casts
 
 You can create custom casts to have Laravel automatically format your Eloquent model data. Here's an example that capitalises a user's name when it is retrieved or changed.
@@ -1281,23 +1259,6 @@ class User extends Model
 ```
 
 Tip given by [@mattkingshott](https://twitter.com/mattkingshott/status/1462828232206659586)
-
-### Don't trigger events when saving
-
-You can use the `saveQuietly()` method on the model if you don't want to trigger model events.
-
-```php
-public function quietly()
-{
-    $user = User::findOrFail(1);
-    $user->name = 'Martin Joo';
-    
-    // Will not trigger any model event
-    $user->saveQuietly();
-}
-```
-
-Tip given by [@mmartin_joo](https://twitter.com/mmartin_joo/status/1465289689154265091)
 
 ### Order based on a related model's average or count
 
@@ -1338,7 +1299,7 @@ $invoice = DB::transaction(function () {
 ### Remove several global scopes from query
 
 When using Eloquent Global Scopes, you not only can use MULTIPLE scopes, but also remove certain scopes when you don't need them, by providing the array to `withoutGlobalScopes()`<br>
-[Link to docs](https://laravel.com/docs/8.x/eloquent#global-scopes)
+[Link to docs](https://laravel.com/docs/8.x/eloquent#removing-global-scopes)
 
 ### Order JSON column attribute
 

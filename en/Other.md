@@ -67,7 +67,6 @@
 34. [Extending Laravel classes](#extending-laravel-classes)
 35. [Can feature](#can-feature)
 36. [Temporary download URLs](#temporary-download-urls)
-37. [Display the release version](#display-the-release-version)
 38. [Dealing with deeply-nested arrays](#dealing-with-deeply-nested-arrays)
 39. [Customize how your exceptions are rendered](#customize-how-your-exceptions-are-rendered)
 40. [The tap helper](#the-tap-helper)
@@ -77,13 +76,9 @@
 44. [Dust out your bloated route file](#dust-out-your-bloated-route-file)
 45. [You can send e-mails to a custom log file](#you-can-send-e-mails-to-a-custom-log-file)
 46. [Markdown made easy](#markdown-made-easy)
-47. [Simplify if on a request with whenFilled() helper](#simplify-if-on-a-request-with-whenFilled-helper)
-48. [Use observers if you need to listen to many events](#use-observers-if-you-need-to-listen-to-many-events)
-49. [Make use of the 'abort', 'abort_if' and 'abort_unless' helpers](#make-use-of-the-abort-abort_if-and-abort_unless-helpers)
-50. [Laravel's chain magic](#laravels-chain-magic)
 51. [Pass arguments to middleware](#pass-arguments-to-middleware)
 52. [Get value from session and forget](#get-value-from-session-and-forget)
-53. [$request->date() method](#requestdate-method)
+53. [$request->date() method](#request-date-method)
 54. [Use through instead of map when using pagination](#use-through-instead-of-map-when-using-pagination)
 
 ### Localhost in .env
@@ -575,7 +570,7 @@ class MigrationsTest extends TestCase
     public function test_successful_foreign_key_in_migrations()
     {
         // We just test if the migrations succeeds or throws an exception
-        $this->expectNotToPerformAssertions();
+        $this->expectNotToPerformAssertions();	                       Artisan::call('migrate:fresh', ['--path' => '/databse/migrations/task1']);
     }
 }
 ```
@@ -651,12 +646,6 @@ public function download(File $file)
 ```
 
 Tip given by [@Philo01](https://twitter.com/Philo01/status/1458791323889197064)
-
-### Display the release version
-
-Want to display the release version in your Laravel app (e.g. footer)?
-
-Create a `version` key in `config/app.php`, then reference it in your Blade template with `{{ config('app.version') }}`
 
 ### Dealing with deeply-nested arrays
 
@@ -875,59 +864,6 @@ public function store(Request $request)
 ```
 
 Tip given by [@mmartin_joo](https://twitter.com/mmartin_joo/status/1467886802711293959)
-
-### Use observers if you need to listen to many events
-
-If you need listening to many events from the same model in #laravel, a great option is to use #observers.<br>
-In this example, I refresh the user cache every update.
-
-```php
-class UserObserver
-{
-    public function updated(User $user)
-    {
-        UpdateUserCache::dispatch($user);
-    }
-}
-```
-
-Tip given by [@paulocastellano](https://twitter.com/paulocastellano/status/1468277233332756481)
-
-### Make use of the 'abort', 'abort_if' and 'abort_unless' helpers
-
-Make use of the `abort`, `abort_if` and `abort_unless` helpers to throw an HTTP exception and halt execution at any layer of your application.
-
-```php
-class DeletePodcastAction
-{
-    public function execure(User $user, Podcast $podcast)
-    {
-        if (! $podcast->owner($user)) {
-            abort(403, 'You do not own this podcast');
-        }
-    }
-}
-```
-
-Laravel also includes the usefull `abort_if` and `abort_unless` helpers, which we can use to simplify any conditionals
-
-```php
-abort_if($podcast->isLive(), 403, 'The podcast is currently streaming');
-abort_unless($podcast->owner($user), 403, 'You do not own this podcast');
-```
-
-Tip given by [@mattkingshott](https://twitter.com/mattkingshott/status/1470423275658481673)
-
-### Laravel's chain magic
-
-```php
-// instead of...
-collect(request('sales'))->filter('qty');
-// you can...
-request()->collect('sales')->filter('qty');
-```
-
-Tip given by [@rcubitto](https://twitter.com/rcubitto/status/1471557340537180177)
 
 ### Pass arguments to middleware
 

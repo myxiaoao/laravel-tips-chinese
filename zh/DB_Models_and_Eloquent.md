@@ -55,13 +55,11 @@
 51. [根据Pivot字段排序](#根据Pivot字段排序)
 52. [从数据库中查询一条记录](#从数据库中查询一条记录)
 53. [记录自动分块](#记录自动分块)
-54. [更新模型而不触发事件](#更新模型而不触发事件)
 55. [定时清理过期记录中的模型](#定时清理过期记录中的模型)
 56. [不变的日期和对它们的强制转换](#不变的日期和对它们的强制转换)
 57. [findorfail方法也接收ids数组](#findorfail方法也接收ids数组)
 
 58. [从你的数据库中自动移除模型prunableTrait](#从你的数据库中自动移除模型prunableTrait)
-59. [withAggregate方法](#withaggregate方法)
 60. [日期转换](#日期转换)
 61. [多模型更新/插入](#多模型更新插入)
 62. [过滤结果集之后获取查询构造器](#过滤结果集之后获取查询构造器)
@@ -1045,16 +1043,6 @@ return User::orderBy('name')->chunkMap(fn ($user) => [
 
 由[@PascalBaljet](https://twitter.com/pascalbaljet)提供
 
-### 更新模型而不触发事件
-
-有时候你需要更新一个模型但是不想发送任何事件 我们可以使用`updateQuietly`做到, 底层使用了`saveQuietly`方法。
-
-```php
-$flight->updateQuietly(['departed' => false]);
-```
-
-由 [@PascalBaljet](https://twitter.com/pascalbaljet)提供
-
 ### 定时清理过期记录中的模型
 
 定期清理过时记录的模型。有了这个特性，Laravel将自动完成这项工作，只需调整内核类中`model:prune`命令的频率
@@ -1165,29 +1153,6 @@ $schedule->command(PruneCommand::class)->daily();
 ```
 
 由 [@Philo01](https://twitter.com/Philo01/status/1457626443782008834)提供
-
-### withaggregate方法
-
-`withAvg/withCount/withSum`和其他方法可以使用 "withAggregate"方法。可以使用此方法基于关系添加子查询。
-
-```php
-// Eloquent Model
-class Post extends Model
-{
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-}
-// Instead of eager loading all users...
-$posts = Post::with('user')->get();
-// You can add a subselect to only retrieve the user's name...
-$posts = Post::withAggregate('user', 'name')->get();
-// This will add a 'user_name' attribute to the Post instance:
-$posts->first()->user_name;
-```
-
-由 [@pascalbaljet](https://twitter.com/pascalbaljet/status/1457702666352594947)提供
 
 ### 日期转换
 
