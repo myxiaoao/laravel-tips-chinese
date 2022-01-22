@@ -18,8 +18,8 @@
 14. [数组元素验证](#数组元素验证)
 15. [Password的defaults方法](#Password的defaults方法)
 16. [表单验证重定向请求](#表单验证重定向请求)
-
 17. [Mac验证规则](#Mac验证规则)
+18. [验证顶级域名邮箱](#验证顶级域名邮箱)
 
 ### 图片验证
 
@@ -311,3 +311,18 @@ $this->assertTrue($validator->passes());
 ```
 
  [@Teacoders] 提供
+
+### 验证顶级域名邮箱
+
+`email`验证规则将接受一个非顶级域名邮箱 (例子:`taylor@laravel`, `povilas@ldaily`)
+
+但是你如果想确保邮箱必须有一个顶级域名 (例子:`taylor@laravel.com`, `povilas@ldaily.com`) 使用`email:filter`规则
+
+```php
+[
+    'email' => 'required|email', // before
+    'email' => 'required|email:filter', // after
+],
+```
+
+ [@Chris1904](https://laracasts.com/discuss/channels/general-discussion/laravel-58-override-email-validation-use-57-rules?replyId=645613)提供

@@ -16,7 +16,7 @@ __Update 17 **January** 2022__: Currently there are __257 tips__ divided into 14
 - [Migrations](./en/Migrations.md) (13 提示)
 - [Views](./en/Views.md) (15 提示)
 - [Routing](./en/Routing.md) (23 提示)
-- [Validation](./en/Validation.md) (17 提示)
+- [Validation](./en/Validation.md) (18 提示)
 - [Collections](./en/Collections.md) (7 提示)
 - [Auth](./en/Auth.md) (5 提示)
 - [Mail](./en/Mail.md) (5 提示)

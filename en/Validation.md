@@ -3,38 +3,23 @@
 ⬆️ [Go to top](#laravel-tips) ⬅️ [Previous (Routing)](#routing) ➡️ [Next (Collections)](#collections)
 
 1. [Image validation](#image-validation)
-
 2. [Custom validation error messages](#custom-validation-error-messages)
-
 3. [Validate dates with "now" or "yesterday" words](#validate-dates-with-now-or-yesterday-words)
-
 4. [Validation Rule with Some Conditions](#validation-rule-with-some-conditions)
-
 5. [Change Default Validation Messages](#change-default-validation-messages)
-
 6. [Prepare for Validation](#prepare-for-validation)
-
 7. [Stop on First Validation Error](#stop-on-first-validation-error)
-
 8. [Throw 422 status code without using validate() or Form Request](#throw-422-status-code-without-using-validate-or-form-request)
-
 9. [Rules depending on some other conditions](#rules-depending-on-some-other-conditions)
-
 10. [With Rule::when() we can conditionally apply validation rules](#with-rulewhen-we-can-conditionally-apply-validation-rules)
-
 11. [Use this property in the request classes to stop the validation of the whole request attributes](#use-this-property-in-the-request-classes-to-stop-the-validation-of-the-whole-request-attributes)
-
 12. [Rule::unique doesn't take into the SoftDeletes Global Scope applied on the Model](#ruleunique-doesnt-take-into-the-softdeletes-global-scope-applied-on-the-model)
-
 13. [Validator::sometimes() method allows us to define when a validation rule should be applied](#validatorsometimes-method-allows-us-to-define-when-a-validation-rule-should-be-applied)
-
 14. [Array elements validation](#array-elements-validation)
-
 15. [Password::defaults method](#passworddefaults-method)
-
 16. [Form Requests for validation redirection](#form-requests-for-validation-redirection)
-
 17. [Mac validation rule](#mac-validation-rule)
+18.  [Validate email with TLD domain required](#validate-email-with-tld-domain-required)
 
 ### Image validation
 
@@ -331,3 +316,18 @@ $this->assertTrue($validator->passes());
 ```
 
 Tip given by [@Teacoders]
+
+### Validate email with TLD domain required
+
+By default, the `email` validation rule will accept an email without tld domain (ie: `taylor@laravel`, `povilas@ldaily`)
+
+But if you want to make sure the email must have a tld domain (ie: `taylor@laravel.com`, `povilas@ldaily.com`), use `email:filter` rule.
+
+```php
+[
+    'email' => 'required|email', // before
+    'email' => 'required|email:filter', // after
+],
+```
+
+Tip given by [@Chris1904](https://laracasts.com/discuss/channels/general-discussion/laravel-58-override-email-validation-use-57-rules?replyId=645613)
