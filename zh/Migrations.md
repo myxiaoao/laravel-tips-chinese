@@ -190,6 +190,8 @@ class WhateverYouWant extends Migration
 php artisan migrate --pretend
 ```
 
+ [@zarpelon](https://github.com/zarpelon) 提供
+
 ### 匿名迁移
 
 `Laravel`团队发布了`Laravel 8.37`版本 支持匿名迁移，解决了迁移命名冲突的问题。
