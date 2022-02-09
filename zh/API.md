@@ -65,3 +65,16 @@ class EmplyeeResource extends JsonResource
 
 Tip given by [@mmartin_joo](https://twitter.com/mmartin_joo/status/1473987501501071362)
 
+### 从Authorizationheader中获取BearerToken
+
+当你使用api并想访问bearerToken时`bearerToken`方法很方便.
+
+```php
+// Don't parse API headers manually like this:
+$tokenWithBearer = $request->header('Authorization');
+$token = substr($tokenWithBearer, 7);
+//Do this instead:
+$token = $request->bearerToken();
+```
+
+由 [@iamharis010](https://twitter.com/iamharis010/status/1488413755826327553)提供

@@ -197,7 +197,6 @@ User::withCount('comments')->orderBy('comments_count', 'desc')->get();
 ```php
 $countries = Country::with(['cities' => function($query) {
     $query->orderBy('population', 'desc');
-    $query->take(3);
 }])->get();
 ```
 

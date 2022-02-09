@@ -7,7 +7,7 @@ Hey, like these tips? Also, check out my premium [Laravel courses](https://larav
 
 ---
 
-__Update 22 **January** 2022__: Currently there are __258 tips__ divided into 14 sections.
+__Update 9 **February**  2022__: Currently there are __259 tips__ divided into 14 sections.
 
 ## Table of Contents
 
@@ -23,6 +23,6 @@ __Update 22 **January** 2022__: Currently there are __258 tips__ divided into 14
 - [Artisan](./en/Artisan.md) (5 提示)
 - [Factories](./en/Factories.md) (6 提示)
 - [Log and debug](./en/Log_and_Debug.md) (5 提示)
-- [API](./en/Api.md) (3 提示)
+- [API](./en/Api.md) (4 提示)
 - [Other](./en/Other.md) (50 提示)
 
