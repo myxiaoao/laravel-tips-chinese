@@ -20,7 +20,7 @@
 ],
 ```
 
-### 用now或yesterday来验证日期
+### 用 now 或 yesterday 来验证日期
 
 您可以使用 `before/after` 的规则验证日期，并将各种字符串作为参数传递，比如: `tomorrow`, `now`, `yesterday`。例如: `'start_date' => 'after:now'`。它在底层下使用 `strtotime ()`。
 
@@ -162,7 +162,7 @@ Rule::unique('users', 'email')->withoutTrashed();
 
 由 [@Zubairmohsin33](https://twitter.com/Zubairmohsin33/status/1438490197956702209) 提供
 
-### sometimes方法允许你定义验证器在什么时候被应用
+### sometimes 方法允许你定义验证器在什么时候被应用
 
 `Validator::sometimes` 方法允许你定义验证器在什么时候被应用，基于提供的输入。  
 这个片段展示了如果购买的物品数量不够，如何禁止使用优惠券。
@@ -244,7 +244,7 @@ public function rules()
 
 由 [@cerbero90](https://twitter.com/cerbero90/status/1434426076198014976) 提供
 
-### Password的defaults方法
+### Password 的 defaults 方法
 
 使用 `Password::defaults` 方法验证用户提供的密码时，可以强制执行特定规则。它包括要求字母、数字、符号等的选项。
 

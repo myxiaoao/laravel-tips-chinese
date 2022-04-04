@@ -183,7 +183,7 @@ Route::middleware('auth:api', 'throttle:rate_limit,1')->group(function () {
 });
 ```
 
-### 路由中的URL参数
+### 路由中的 URL 参数
 
 如果你在路由中使用数组传入了其它参数，这些键 / 值将会自动配对并且带入 `URL` 查询参数中。
 
@@ -362,7 +362,7 @@ public function show(Product $product) {
 }
 ```
 
-### 本地化资源URI
+### 本地化资源 URI
 
 如果你使用了资源控制器，但是想要将 URL 谓词变为非英语形式的，比如你想要西班牙语的 `/crear` 而不是 `/create` ，你可以使用 `Route::resourceVerbs()` 方法来配置。
 
@@ -442,7 +442,7 @@ public function resolveRouteBinding($value, $field = null)
 
 由 [@Philo01](https://twitter.com/Philo01/status/1447539300397195269) 提供
 
-### 如果你需要一个公共URL但是你想让他们更安全
+### 如果你需要一个公共 URL 但是你想让他们更安全
 
 如果你需要一个公共URL但是你想让他们更安全，使用 `Laravel signed URL`
 

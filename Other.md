@@ -95,7 +95,7 @@ class ShowProfile extends Controller
 return redirect()->action('SomeController@method', ['param' => $value]);
 ```
 
-### 使用旧版本的Laravel
+### 使用旧版本的 Laravel
 
 如果你想用旧版本而非新版本的 `Laravel`，使用这个命令：
 
@@ -182,7 +182,7 @@ data_get($yourArray,  '*.product.id');
 // Now we have all products ids [1, 2, 3, 4, 5, etc...]
 ```
 
-### Blade指令增加真假条件
+### Blade 指令增加真假条件
 
 `Laravel 8.51` 新增 `@class` 指令，用于添加控制 CSS 类的真 / 假条件。
 
@@ -374,7 +374,7 @@ Route::get('posts', PostController::class)
 
 由 [@sky_0xs](https://twitter.com/sky_0xs/status/1438258486815690766) 提供
 
-### 将数组转化成css类
+### 将数组转化成 css 类
 
 ```php
 use Illuminate\Support\Arr;

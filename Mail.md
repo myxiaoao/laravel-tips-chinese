@@ -15,7 +15,7 @@ Route::get('/mailable', function () {
 });
 ```
 
-### 不使用Mailables预览邮件
+### 不使用 Mailables 预览邮件
 
 不使用 Mailables 你也可以预览你的邮件。举个例子，当你创建通知的时候你可以指定你的邮件通知中可能用到的 markdown 文件。
 

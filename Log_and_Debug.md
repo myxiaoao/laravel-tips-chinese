@@ -42,7 +42,7 @@ public function handle(Request $request, Closure $next)
 
 由 [@LaraibiM](https://twitter.com/LaraibiM/status/1437857603263078421) 提供
 
-### 快速输出Query的sql
+### 快速输出 Query 的 sql
 
 如果你想快速输出一个 `Eloquent query` 的sql 你可以调用 `toSql()` 方法如下:
 

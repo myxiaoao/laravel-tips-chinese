@@ -179,7 +179,7 @@ public function boot()
 
 由 [@godismyjudge95](https://twitter.com/godismyjudge95/status/1448825909167931396) 提供
 
-### Blade类型提示
+### Blade 类型提示
 
 ```php
 @php

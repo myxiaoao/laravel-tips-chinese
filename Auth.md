@@ -29,7 +29,7 @@ class EventServiceProvider extends ServiceProvider
     ];
 ```
 
-### 你知道Authonce吗
+### 你知道 Authonce 吗
 
 你可以用用户登录一个请求，使用方法 `Auth::once()`。
 不会使用任何会话或 cookie，这意味着该方法在构建无状态 API 时可能很有帮助。
@@ -40,7 +40,7 @@ if (Auth::once($credentials)) {
 }
 ```
 
-### 更改用户密码更新的API令牌
+### 更改用户密码更新的 API 令牌
 
 当用户的密码更改时，可以方便地更改用户的 API 令牌。
 模型：

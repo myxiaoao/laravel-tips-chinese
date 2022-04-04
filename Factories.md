@@ -68,9 +68,9 @@ Post::factory()->createManyQuietly([
 ]);
 ```
 
-### 有用的for方法
+### 有用的 for 方法
 
-Laravel工厂有一个非常有用的 `for` 方法。您可以使用它来创建 `belongsTo` 关系。
+Laravel 工厂有一个非常有用的 `for` 方法。您可以使用它来创建 `belongsTo` 关系。
 
 ```php
 public function run()
