@@ -10,20 +10,3 @@
 
 __更新于 2022/2/9:现在有259个小提示，分成14类.
 
-
-## 目录
-
-- [数据库模型与 Eloquent](./DB_Models_and_Eloquent.md) (71 提示)
-- [模型关联](./Models_Relations.md) (32 提示)
-- [数据库迁移](./Migrations.md) (13 提示)
-- [视图](./Views.md) (15 提示)
-- [路由](./Routing.md) (23 提示)
-- [验证](./Validation.md) (18 提示)
-- [集合](./Collections.md) (7 提示)
-- [授权](./Auth.md) (5 提示)
-- [邮件](./Mail.md) (5 提示)
-- [Artisan](./Artisan.md) (5 提示)
-- [工厂](./Factories.md) (6 提示)
-- [日志与调试](./Log_and_Debug.md) (5 提示)
-- [API](./API.md) (4 提示)
-- [其他](./Other.md) (50 提示)
