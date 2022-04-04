@@ -1,5 +1,4 @@
-## 数据库模型与 Eloquent (71 提示)
-
+## 数据库模型与 Eloquent 
 
 ### 复用或克隆query
 
