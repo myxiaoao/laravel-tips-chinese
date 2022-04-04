@@ -117,3 +117,23 @@ $offer = [
                 
 $totalPerGroup = collect($offer['lines'])->groupBy->group->map->sum('price');
 ```
+
+### 获取一个键，如果不存在则插入一个值，并返回该值
+在 Laravel 8.81 中添加了 `getOrPut` 方法到集合，简化了你想获得一个键，如果它不存在，插入一个值并返回值的使用情况。
+```php
+$key = 'name';
+// Still valid
+if ($this->collection->has($key) === false) {
+    $this->collection->put($key, ...);
+}
+
+return $this->collection->get($key);
+
+// Using the `getOrPut()` method with closure
+return $this->collection->getOrPut($key, fn() => ...);
+
+// Or pass a fixed value
+return $this->collection->getOrPut($key, $value='teacoders');
+```
+
+由 [@Teacoders](https://twitter.com/Teacoders/status/1488338815592718336) 提供

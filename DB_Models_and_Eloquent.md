@@ -24,12 +24,12 @@ $inactive_products = $query->where('status', 0)->get(); // 所以这里我们将
 为了解决这个问题,我们可以通过重用这个`$query`对象来查询多次。因此我们在做任何对`$query`修改操作的时候需要克隆这个`$query`。
 
 ```php
-$active_products = (clone $query)->where('status', 1)->get(); // it will not modify the $query
-$inactive_products = (clone $query)->where('status', 0)->get(); // so we will get inactive products from $query
+$active_products = $query->clone()->where('status', 1)->get(); // it will not modify the $query
+$inactive_products = $query->clone()->where('status', 0)->get(); // so we will get inactive products from $query
 
 ```
 
-### Eloquent where日期方法
+### Eloquent where 日期方法
 
 在 Eloquent 中，使用 `whereDay()`、`whereMonth()`、`whereYear()`、`whereDate()` 和 `whereTime()` 函数检查日期。
 
@@ -104,7 +104,7 @@ $users = User::where('role_id', 1)->get()->map(function (User $user) {
 });
 ```
 
-### 修改默认的Timestamp 字段
+### 修改默认的 Timestamp 字段
 
 如果您使用的是非 `Laravel` 数据库并且时间戳列的名称不同怎么办？也许，你有 `create_time` 和 `update_time`。 幸运的是，您也可以在模型中指定它们：
 
@@ -116,7 +116,7 @@ class Role extends Model
 }
 ```
 
-### 按照created_at快速排序
+### 按照 created_at 快速排序
 
 不用:
 
@@ -174,7 +174,7 @@ User::where('active', 1)
 
 ### 不止一个范围
 
-您可以在 Eloquent 中组合和链式调用查询范围，在一个`query`查询中使用多个范围。
+您可以在 Eloquent 中组合和链式调用查询范围，在一个 `query` 查询中使用多个范围。
 
 Model文件内:
 
@@ -233,9 +233,9 @@ class User extends Model
 }
 ```
 
-### find () 查询多条数据
+### find 查询多条数据
 
-`find()`方法可以接受多参数, 传入多个值时会返回所有找到记录的集合，而不是一个模型:
+`find()` 方法可以接受多参数, 传入多个值时会返回所有找到记录的集合，而不是一个模型:
 
 ```php
 // 返回 Eloquent Model
@@ -244,11 +244,11 @@ $user = User::find(1);
 $users = User::find([1,2,3]);
 ```
 
-技巧来自 [@tahiriqbalnajam](https://twitter.com/tahiriqbalnajam/status/1436120403655671817)
+由 [@tahiriqbalnajam](https://twitter.com/tahiriqbalnajam/status/1436120403655671817) 提供
 
-### find多个模型并返回多列
+### find 多个模型并返回多列
 
-`find`方法可接受多参数 使得结果集返回指定列的模型集合，而不是模型的所有列:
+`find` 方法可接受多参数 使得结果集返回指定列的模型集合，而不是模型的所有列:
 
 ```php
 // Will return Eloquent Model with first_name and email only
@@ -257,17 +257,17 @@ $user = User::find(1, ['first_name', 'email']);
 $users = User::find([1,2,3], ['first_name', 'email']);
 ```
 
-技巧来自 [@tahiriqbalnajam](https://github.com/tahiriqbalnajam)
+由 [@tahiriqbalnajam](https://github.com/tahiriqbalnajam) 提供
 
 ### 按照键查找
 
-您还可以使用`whereKey()`方法根据您指定的主键查找多条记录。(默认`id`但是你可以在Eloquent 模型中覆盖掉)
+您还可以使用 `whereKey()` 方法根据您指定的主键查找多条记录。(默认 `id` 但是你可以在 Eloquent 模型中覆盖掉)
 
 ```php
 $users = User::whereKey([1,2,3])->get();
 ```
 
-### 使用UUID替换auto-increment
+### 使用 UUID 替换 auto-increment
 
 您不想在模型中使用自动递增 ID？
 
@@ -324,7 +324,7 @@ return Destination::addSelect(['last_flight' => Flight::select('name')
 $users = User::all()->makeHidden(['email_verified_at', 'deleted_at']);
 ```
 
-### 确定DB报错
+### 确定 DB 报错
 
 如果您想捕获 Eloquent Query 异常，请使用特定的 `QueryException` 代替默认的 `Exception` 类，您将能够获得SQL确切的错误代码。
 
@@ -340,7 +340,7 @@ try {
 
 ### 软删除与查询构造器
 
-注意 当你用到 `Eloquent`时 软删除将会起作用，但是查询构造器不行。
+注意 当你用到 `Eloquent` 时 软删除将会起作用，但是查询构造器不行。
 
 ```php
 // 将排除软删除的条目
@@ -353,7 +353,7 @@ $users = User::withTrashed()->get();
 $users = DB::table('users')->get();
 ```
 
-### SQL声明
+### SQL 声明
 
 如果你需要执行一个简单的 SQL 查询，但没有方案 —— 比如改变数据库模式中的某些东西，只需执行 DB::statement()。
 
@@ -402,9 +402,6 @@ $flight = Flight::updateOrCreate(
 ```
 
 ### 保存时移除缓存
-
-由 [@pratiksh404](https://github.com/pratiksh404)提供
-
 如果您缓存了一个键存储了 `posts` 这个集合，想在新增或更新时移除缓存键，可以在您的模型上调用静态的 saved 函数：
 
 ```php
@@ -421,11 +418,10 @@ class Post extends Model
 }
 ```
 
-### 修改Created_at和Updated_at的格式
+由 [@pratiksh404](https://github.com/pratiksh404) 提供
 
-由[@syofyanzuhad](https://github.com/syofyanzuhad)提供
-
-想要改变 `created_at`的格式，您可以在模型中添加一个方法，如下所示:
+### 修改 Created_at 和 Updated_at 的格式
+想要改变 `created_at` 的格式，您可以在模型中添加一个方法，如下所示:
 
 ```php
 public function getCreatedAtFormattedAttribute()
@@ -447,10 +443,9 @@ public function getUpdatedAtFormattedAttribute()
 
 在有需要的时候使用 `$entry->updated_at_formatted`。它会返回 `updated_at` 的属性如同: `04:19 23, Aug 2020` 。
 
+由 [@syofyanzuhad](https://github.com/syofyanzuhad) 提供
+
 ### 数组类型存储到 JSON 中
-
-由[@pratiksh404](https://github.com/pratiksh404)提供
-
 如果你的输入字段有一个数组需要存储为 JSON 格式，你可以在模型中使用 `$casts` 属性。 这里的 `images` 是 JSON 属性
 
 ```php
@@ -460,6 +455,8 @@ protected $casts = [
 ```
 
 这样你可以以 JSON 格式存储它，但当你从 DB 中读取时，它会以数组方式使用。
+
+由 [@pratiksh404](https://github.com/pratiksh404) 提供
 
 ### 复制一个模型
 
@@ -491,7 +488,7 @@ $billing->save();
 $orders = Order::all();
 ```
 
-但如果我们有非常庞大的数据库，这可能会很慢，因为 `Laravel ` 会准备好模型类的对象。在这种情况下，`Laravel `有一个很方便的函数 `toBase()`。
+但如果我们有非常庞大的数据库，这可能会很慢，因为 `Laravel` 会准备好模型类的对象。在这种情况下，`Laravel` 有一个很方便的函数 `toBase()`。
 
 ```php
 $orders = Order::toBase()->get();
@@ -500,9 +497,9 @@ $orders = Order::toBase()->get();
 
 通过调用这个方法，它将从数据库中获取数据，但它不会准备模型类。同时，向 `get()` 方法传递一个字段数组通常是个好主意，这样可以防止从数据库中获取所有字段。
 
-### 忽略 $fillable/$guarded 并强制执行
+### 忽略 $fillable / $guarded 并强制执行
 
-如果你为其他开发者创建了一个 Laravel 模板, 然后你不能控制他们以后会在模型的 $fillable/$guarded 中填写什么，你可以使用 forceFill()
+如果你为其他开发者创建了一个 Laravel 模板, 然后你不能控制他们以后会在模型的 $fillable / $guarded 中填写什么，你可以使用 forceFill()
 
 ```php
 $team->update(['name' => $request->name])
@@ -516,7 +513,7 @@ $team->forceFill(['name' => $request->name])
 
 这将忽略该查询的 $fillable 并强制执行。
 
-### 3层父子级结构
+### 3 层父子级结构
 
 If you have a 3-level structure of parent-children, like categories in an e-shop, and you want to show the number of products on the third level, you can use `with('yyy.yyy')` and then add `withCount()` as a condition
 
@@ -575,7 +572,7 @@ class Category extends Model
 </ul>
 ```
 
-### 使用 find() 来搜索更多的记录
+### 使用 find 来搜索更多的记录
 
 你不仅可以用 find() 来搜索单条记录，还可以用 IDs 的集合来搜索更多的记录，方法如下：
 
@@ -641,8 +638,6 @@ abort_if ($product->user_id != auth()->user()->id, 403)
 
 ### 在删除模型之前执行任何额外的操作
 
-由[@back2Lobby](https://github.com/back2Lobby)提供
-
 我们可以使用 `Model::delete()` 执行额外的操作来覆盖原本的删除方法
 
 ```php
@@ -656,6 +651,8 @@ public function delete(){
 	Model::delete();
 }
 ```
+
+由[@back2Lobby](https://github.com/back2Lobby) 提供
 
 ### 当你需要在保存数据到数据库时自动填充一个字段
 
@@ -678,7 +675,7 @@ class Article extends Model
 }
 ```
 
-由[@sky_0xs](https://twitter.com/sky_0xs/status/1432390722280427521)提供
+由 [@sky_0xs](https://twitter.com/sky_0xs/status/1432390722280427521) 提供
 
 ### 获取查询语句的额外信息
 
@@ -709,9 +706,9 @@ Illuminate\Support\Collection {#5344
 }
 ```
 
-由 [@amit_merchant](https://twitter.com/amit_merchant/status/1432277631320223744)提供
+由 [@amit_merchant](https://twitter.com/amit_merchant/status/1432277631320223744) 提供
 
-### 在 Laravel 中使用doesntExist()方法
+### 在 Laravel 中使用 doesntExist() 方法
 
 ```php
 // 一个例子
@@ -729,11 +726,11 @@ if ( $model->where('status', 'pending')->doesntExist() ) {
 }
 ```
 
-由 [@ShawnHooper](https://twitter.com/ShawnHooper/status/1435686220542234626)提供
+由 [@ShawnHooper](https://twitter.com/ShawnHooper/status/1435686220542234626) 提供
 
 ### 在一些模型的 boot () 方法中自动调用一个特性
 
-如果你有一个特性，你想把它添加到几个模型中，自动调用它们的 `boot()` 方法，你可以把特性的方法作为boot （特性名称）来调用
+如果你有一个特性，你想把它添加到几个模型中，自动调用它们的 `boot()` 方法，你可以把特性的方法作为 boot （特性名称）来调用
 
 ```php
 class Transaction extends  Model
@@ -765,7 +762,7 @@ trait MultiTenantModelTrait
 }
 ```
 
-### Laravel 的 find () 方法，比只传一个 ID 更多的选择
+### Laravel 的 find 方法，比只传一个 ID 更多的选择
 
 ```php
 // 在 find($id) 方法中第二个参数可以是返回字段
@@ -795,7 +792,7 @@ public function index()
 }
 ```
 
-由 [@aschmelyun](https://twitter.com/aschmelyun/status/1440641525998764041)提供
+由 [@aschmelyun](https://twitter.com/aschmelyun/status/1440641525998764041) 提供
 
 ### 如何避免 property of non-object 错误
 
@@ -822,7 +819,7 @@ public function author() {
 }
 ```
 
-由 [@coderahuljat](https://twitter.com/coderahuljat/status/1440556610837876741)提供
+由 [@coderahuljat](https://twitter.com/coderahuljat/status/1440556610837876741) 提供
 
 ### Eloquent 数据改变后获取原始数据
 
@@ -836,7 +833,7 @@ $user->getOriginal('name'); // John
 $user->getOriginal(); // Original $user record
 ```
 
-由 [@devThaer](https://twitter.com/devThaer/status/1442133797223403521)提供
+由 [@devThaer](https://twitter.com/devThaer/status/1442133797223403521) 提供
 
 ### 一种更简单创建数据库的方法
 
@@ -848,7 +845,7 @@ DB::unprepared(
 );
 ```
 
-由 [@w3Nicolas](https://twitter.com/w3Nicolas/status/1447902369388249091)提供
+由 [@w3Nicolas](https://twitter.com/w3Nicolas/status/1447902369388249091) 提供
 
 ### Query构造器的crossJoinSub方法
 
@@ -864,13 +861,13 @@ DB::table('orders')
     ->get();
 ```
 
-由 [@PascalBaljet](https://twitter.com/pascalbaljet)提供
+由 [@PascalBaljet](https://twitter.com/pascalbaljet) 提供
 
-### belongsToMany的中间表命名
+### belongsToMany 的中间表命名
 
-为了决定 关系表的中间表, Eloquent将按字母顺序连接两个相关的型号名称。
+为了决定 关系表的中间表, Eloquent 将按字母顺序连接两个相关的型号名称。
 
-这意味着可以这样添加“Post”和“Tag”之间的连接：
+这意味着可以这样添加 “Post” 和 “Tag” 之间的连接：
 
 ```php
 class Post extends Model
@@ -909,11 +906,11 @@ class Post extends Model
 }
 ```
 
-由 [@iammikek](https://twitter.com/iammikek)提供
+由 [@iammikek](https://twitter.com/iammikek) 提供
 
-### 根据Pivot字段排序
+### 根据 Pivot 字段排序
 
-`BelongsToMany::orderByPivot()` 允许你直接对`BelongsToMany `关系查询的结果集进行排序。
+`BelongsToMany::orderByPivot()` 允许你直接对`BelongsToMany` 关系查询的结果集进行排序。
 
 ```php
 class Tag extends Model
@@ -942,23 +939,23 @@ public function getPostTags($id)
 }
 ```
 
-由 [@PascalBaljet](https://twitter.com/pascalbaljet)提供
+由 [@PascalBaljet](https://twitter.com/pascalbaljet) 提供
 
 
 
 ### 从数据库中查询一条记录
 
-`sole()`方法将会只返回一条匹配标准的记录。如果没找到，将会抛出`NoRecordsFoundException` 异常。如果发现了多条记录，抛出`MultipleRecordsFoundException` 异常
+`sole()` 方法将会只返回一条匹配标准的记录。如果没找到，将会抛出`NoRecordsFoundException` 异常。如果发现了多条记录，抛出`MultipleRecordsFoundException` 异常
 
 ```php
 DB::table('products')->where('ref', '#123')->sole();
 ```
 
-由 [@PascalBaljet](https://twitter.com/pascalbaljet)提供
+由 [@PascalBaljet](https://twitter.com/pascalbaljet) 提供
 
 ### 记录自动分块
 
-与`each()`相同，但是更简单使用。`chunks`自动将记录分成多块。
+与 `each()` 相同，但是更简单使用。`chunks` 自动将记录分成多块。
 
 ```php
 return User::orderBy('name')->chunkMap(fn ($user) => [
@@ -967,11 +964,11 @@ return User::orderBy('name')->chunkMap(fn ($user) => [
 ]), 25);
 ```
 
-由[@PascalBaljet](https://twitter.com/pascalbaljet)提供
+由[@PascalBaljet](https://twitter.com/pascalbaljet) 提供
 
 ### 定时清理过期记录中的模型
 
-定期清理过时记录的模型。有了这个特性，Laravel将自动完成这项工作，只需调整内核类中`model:prune`命令的频率
+定期清理过时记录的模型。有了这个特性，Laravel 将自动完成这项工作，只需调整内核类中 `model:prune` 命令的频率
 
 ```php
 use Illuminate\Database\Eloquent\Model;
@@ -1002,13 +999,13 @@ protected function pruning()
 }
 ```
 
-由 [@PascalBaljet](https://twitter.com/pascalbaljet)提供
+由 [@PascalBaljet](https://twitter.com/pascalbaljet) 提供
 
 ### 不变的日期和对它们的强制转换
 
-Laravel 8.53 介绍了`immutable_date` 和`immutable_datetime` 将日期转换为Immutable`.
+Laravel 8.53 介绍了 `immutable_date` 和`immutable_datetime` 将日期转换为 `Immutable`.
 
-转换成`CarbonImmutable `，而不是常规的`Carbon `实例。
+转换成 `CarbonImmutable`，而不是常规的 `Carbon` 实例。
 
 ```php
 class User extends Model
@@ -1020,11 +1017,11 @@ class User extends Model
 }
 ```
 
-由 [@PascalBaljet](https://twitter.com/pascalbaljet)提供
+由 [@PascalBaljet](https://twitter.com/pascalbaljet) 提供
 
 ### findorfail方法也接收ids数组
 
-findorfail方法也接收ids数组。若无ids被找到 则失败。
+findorfail 方法也接收 ids 数组。若无 ids 被找到 则失败。
 
 若你想拿到一个模型的集合 并不想检测返回数量为你想得到的数量时很好用。
 
@@ -1046,11 +1043,11 @@ User::findOrFail([1, 2, 3, 99]);
 
 由 [@timacdonald87](https://twitter.com/timacdonald87/status/1457499557684604930) 提供
 
-### 从你的数据库中自动移除模型prunableTrait
+### 从你的数据库中自动移除模型 prunableTrait
 
 Laravel 8.50新特性:
 
-你可以使用`prunable trait`从你的数据库中自动移除模型。举例:你可以在几天后永久移除软删除的模型。
+你可以使用 `prunable trait` 从你的数据库中自动移除模型。举例:你可以在几天后永久移除软删除的模型。
 
 
 
@@ -1078,11 +1075,11 @@ class File extends Model
 $schedule->command(PruneCommand::class)->daily();
 ```
 
-由 [@Philo01](https://twitter.com/Philo01/status/1457626443782008834)提供
+由 [@Philo01](https://twitter.com/Philo01/status/1457626443782008834) 提供
 
 ### 日期转换
 
-当标记改变时 原来用布尔值来控制模型的可见性，现在可以使用``something_at` `替换。比如 一个产品变成可见:
+当标记改变时 原来用布尔值来控制模型的可见性，现在可以使用`something_at` 替换。比如 一个产品变成可见:
 
 ```php
 // Migration
@@ -1100,11 +1097,11 @@ protected $dates = [
 ];
 ```
 
-由 [@alexjgarrett](https://twitter.com/alexjgarrett/status/1459174062132019212)提供
+由 [@alexjgarrett](https://twitter.com/alexjgarrett/status/1459174062132019212) 提供
 
 ### 多模型更新插入
 
-`upsert()`方法将插入/更新多个记录。
+`upsert()` 方法将插入/更新多个记录。
 
 - 第一个参数数组:要更新/插入的值
 - 第二个:查询表达式中使用的唯一标识列
@@ -1117,13 +1114,13 @@ Flight::upsert([
 ], ['departure', 'destination'], ['price']);
 ```
 
-由 [@mmartin_joo](https://twitter.com/mmartin_joo/status/1461591319516647426)提供
+由 [@mmartin_joo](https://twitter.com/mmartin_joo/status/1461591319516647426) 提供
 
 ### 过滤结果集之后获取查询构造器
 
 你可以使用 `toQuery()` 在过滤结果集之后获取查询构造器。
 
-该方法在内部使用集合的第一个模型 并使用集合模型上的“whereKey”比较器。(此处翻译拗口 存疑。但是使用方法很明确。)
+该方法在内部使用集合的第一个模型 并使用集合模型上的 “whereKey” 比较器。(此处翻译拗口 存疑。但是使用方法很明确。)
 
 ```php
 // Retrieve all logged_in users
@@ -1138,13 +1135,13 @@ if ($nthUsers->isNotEmpty()) {
 }
 ```
 
-由 [@RBilloir](https://twitter.com/RBilloir/status/1462529494917566465)提供
+由 [@RBilloir](https://twitter.com/RBilloir/status/1462529494917566465) 提供
 
 ### 选择聚合计算相关模型
 
 选择聚合计算相关模型。
 
-需要指出的是在一组相关模型上使用`count`方法要慢一点。
+需要指出的是在一组相关模型上使用 `count` 方法要慢一点。
 
 ```php
 // In your controller
@@ -1159,11 +1156,11 @@ $user->articles_count
 $user->articles->count();
 ```
 
-由 [@alexjgarrett](https://twitter.com/alexjgarrett/status/1462753602385108995)提供
+由 [@alexjgarrett](https://twitter.com/alexjgarrett/status/1462753602385108995) 提供
 
 ### 自定义强制转换
 
-你可以自定义强制转换来让`Laravel`自动格式化你的模型数据。
+你可以自定义强制转换来让 `Laravel` 自动格式化你的模型数据。
 
 下面是一个在检索或更改用户名时将其大写的示例。
 
@@ -1189,11 +1186,11 @@ class User extends Model
 }
 ```
 
-由 [@mattkingshott](https://twitter.com/mattkingshott/status/1462828232206659586)提供
+由 [@mattkingshott](https://twitter.com/mattkingshott/status/1462828232206659586) 提供
 
 ### 保存中不要触发事件
 
-若你不想触发模型事件 使用`saveQuietly()`方法
+若你不想触发模型事件 使用 `saveQuietly()` 方法
 
 ```php
 public function quietly()
@@ -1206,7 +1203,7 @@ public function quietly()
 }
 ```
 
-由 [@mmartin_joo](https://twitter.com/mmartin_joo/status/1465289689154265091)提供
+由 [@mmartin_joo](https://twitter.com/mmartin_joo/status/1465289689154265091) 提供
 
 ### 基于相关模型的平均值或总数排序
 
@@ -1223,11 +1220,11 @@ public function bestBooks()
 }
 ```
 
-由 [@mmartin_joo](https://twitter.com/mmartin_joo/status/1466769691385335815)提供
+由 [@mmartin_joo](https://twitter.com/mmartin_joo/status/1466769691385335815) 提供
 
 ### 返回事务结果
 
-若你有一个`DB`事务 并且你想返回它的结果 至少有两种方法:
+若你有一个 `DB` 事务 并且你想返回它的结果 至少有两种方法:
 
 ```php
 // 1. You can pass the parameter by reference
@@ -1245,16 +1242,16 @@ $invoice = DB::transaction(function () {
 });
 ```
 
-### 从query中移除多个公共scope
+### 从 query 中移除多个公共 scope
 
-当使用`Global Scopes`时 你不仅可以使用多个 `scope` 而且可以在不需要的时候通过提供的``withoutGlobalScopes`方法移除他们
+当使用 `Global Scopes` 时 你不仅可以使用多个 `scope` 而且可以在不需要的时候通过提供的 `withoutGlobalScopes` 方法移除他们
 
 
 [Link to docs](https://laravel.com/docs/8.x/eloquent#global-scopes)
 
-### JSON列属性排序
+### JSON 列属性排序
 
-你可以使用JSON列属性排序
+你可以使用 JSON 列属性排序
 
 ```php
 // JSON column example:
@@ -1265,11 +1262,11 @@ $bikes = Bike::where('athlete_id', $this->athleteId)
         ->get();
 ```
 
-由 [@brbcoding](https://twitter.com/brbcoding/status/1473353537983856643)提供
+由 [@brbcoding](https://twitter.com/brbcoding/status/1473353537983856643) 提供
 
 ### 从第一个结果中获取单列的值
 
-你可以使用`value`方法从第一个结果中获取单列的值。
+你可以使用 `value` 方法从第一个结果中获取单列的值。
 
 ```php
 // Instead of
@@ -1280,11 +1277,11 @@ Integration::where('name', 'foo')->value('active');
 Integration::where('name', 'foo')->valueOrFail('active')';
 ```
 
-由 [@justsanjit](https://twitter.com/justsanjit/status/1475572530215796744)提供
+由 [@justsanjit](https://twitter.com/justsanjit/status/1475572530215796744) 提供
 
 ### 检测模型属性是否被修改
 
-想知道您对模型所做的更改是否改变了键的值吗？没问题，只需`originalIsEquivalent`方法即可。
+想知道您对模型所做的更改是否改变了键的值吗？没问题，只需`originalIsEquivalent` 方法即可。
 
 ```php
 $user = User::first(); // ['name' => "John']
@@ -1295,7 +1292,7 @@ $user->fill(['name' => 'David']); // Or set via fill
 $user->originalIsEquivalent('name'); // false
 ```
 
-由 [@mattkingshott]提供
+由 [@mattkingshott](https://twitter.com/mattkingshott/status/1475843987181379599) 提供
 
 ### 定义访问器与修改器的新方法
 
@@ -1321,13 +1318,13 @@ protected function title(): Attribute
 }
 ```
 
-Tip given by [@Teacoders](https://twitter.com/Teacoders/status/1473697808456851466)
+由 [@Teacoders](https://twitter.com/Teacoders/status/1473697808456851466) 提供
 
 ### 另外一种定义访问器与修改器的方法
 
 在一些模型中想用同样的修改器 访问器 可以自定义转换。
 
-只需要创建一个类 实现 ``CastsAttributes` 实现两个方法
+只需要创建一个类 实现 `CastsAttributes` 实现两个方法
 
 - get 标识模型应当从数据库如何拿到
 - set 标识数据应当如何存储到数据库
@@ -1372,5 +1369,187 @@ class User extends Authenticatable
 }
 ```
 
-[@AhmedRezk]提供
+由 [@AhmedRezk](https://github.com/AhmedRezk59) 提供
 
+### 在搜索第一条记录时，你可以执行一些操作
+当搜索第一条记录时，你想执行一些操作，当你没有找到它时。 `firstOrFail()` 抛出一个 404 异常。
+
+你可以用 `firstOr(function() {})` 代替。 Laravel帮你解决了这个问题
+```php
+$book = Book::whereCount('authors')
+            ->orderBy('authors_count', 'DESC')
+            ->having('modules_count', '>', 10)
+            ->firstOr(function() {
+                // THe Sky is the Limit ...
+                
+                // You can perform any action here
+            });
+```
+
+由 [@bhaidar](https://twitter.com/bhaidar/status/1487757487566639113/) 提供
+
+### 直接将 created_at 日期转换为人性化格式
+你知道吗，你可以使用 diffForHumans() 函数直接将 created_at 日期转换成人性化格式，如 1 分钟前，1 个月前。Laravel eloquent 默认在 created_at 字段上启用 Carbon 实例。
+```php
+$post = Post::whereId($id)->first();
+$result = $post->created_at->diffForHumans();
+
+/* OUTPUT */
+// 1 Minutes ago, 2 Week ago etc..as per created time
+```
+
+由 [@vishal__2931](https://twitter.com/vishal__2931/status/1488369014980038662) 提供
+
+### 通过获取器排序
+我们不是按数据库级别排序，而是按返回的集合的获取器排序。
+```php
+class User extends Model
+{
+    // ...
+    protected $appends = ['full_name'];
+    
+    public function getFullNameAttribute()
+    {
+        return $this->attribute['first_name'] . ' ' . $this->attributes['last_name'];
+    }
+    // ..
+}
+```
+
+```php
+class UserController extends Controller
+{
+    // ..
+    public function index()
+    {
+        $users = User::all();
+        
+        // order by full_name desc
+        $users->sortByDesc('full_name');
+        
+        // or
+        
+        // order by full_name asc
+        $users->sortBy('full_name');
+        
+        // ..
+    }
+    // ..
+}
+```
+
+`sortByDesc` 和 `sortBy` 方法在集合中。
+
+由 [@bhaidar](https://twitter.com/bhaidar/status/1490671693618053123) 提供
+ 
+### 创建或发现特定模型的检查
+如果你想检查特定模型是否被创建或找到，使用 `wasRecentlyCreated` 模型属性。
+```php
+$user = User::create([
+    'name' => 'Oussama',
+]);
+
+// return boolean
+return $user->wasRecentlyCreated;
+
+// true for recently created
+// false for found (already on you db)
+```
+
+由 [@sky_0xs](https://twitter.com/sky_0xs/status/1491141790015320064) 提供
+
+### 带有数据库驱动的 Laravel Scout
+使用 laravel v9，你可以使用 Laravel Scout（搜索）与数据库驱动程序。
+```php
+$companies = Company::search(request()->get('search'))->paginate(15);
+```
+
+由 [@magarrent](https://twitter.com/magarrent/status/1493221422675767302) 提供
+
+### 使用查询生成器的 value 方法
+当你只需要检索一个列时，利用查询生成器上的 `value` 方法来执行一个更有效的查询。
+```php
+// Before (fetches all columns on the row)
+Statistic::where('user_id', 4)->first()->post_count;
+
+// After (fetches only `post_count`)
+Statistic::where('user_id', 4)->value('post_count');
+```
+
+由 [@mattkingshott](https://twitter.com/mattkingshott/status/1493583444244410375) 提供
+
+### 将数组传给 where 方法
+你可以传递一个数组给 where 方法。
+```php
+// Instead of this
+JobPost::where('company', 'laravel')
+        ->where('job_type', 'full time')
+        ->get();
+
+// You can pass an array
+JobPost::where(['company' => 'laravel',
+                'job_type' => 'full time'])
+        ->get();
+```
+
+由 [@cosmeescobedo](https://twitter.com/cosmeescobedo/status/1495626752282234881) 提供
+
+### 从模型集合中返回主键
+你知道 eloquent 中的 `modelsKeys()` 集合方法吗？它从模型集合中返回主键。
+```php
+$users = User::active()->limit(3)->get();
+
+$users->modelsKeys(); // [1, 2, 3]
+```
+
+由 [@iamharis010](https://twitter.com/iamharis010/status/1495816807910891520) 提供
+
+### 永久关闭懒加载
+
+如果你想在你的应用程序中阻止懒加载，你只需要在你的  "AppServiceProvider" 的 "boot() "  方法中添加以下一行
+```php
+Model::preventLazyLoading();
+```
+但是，如果你想只在你的本地开发中启用这个功能，你可以改变上述代码。
+```php
+Model::preventLazyLoading(!app()->isProduction());
+```
+由 [@CatS0up](https://github.com/CatS0up) 提供
+
+### 使你所有的模型的字段批量分配
+
+出于安全原因，这不是一个推荐的方法，但它是可能的。
+
+当你想这样做时，你不需要为每个模型设置一个空的 `$guarded` 数组，像这样：
+
+```php
+protected $guarded = [];
+```
+
+只要在你的 "AppServiceProvider" 中的 "boot() " 方法中添加以下一行：
+
+```php
+Model::unguard();
+```
+
+现在，你的所有模型都是可以自动分配的。
+
+由 [@CatS0up](https://github.com/CatS0up) 提供
+
+### 在查询语句中隐藏列
+
+如果你使用 Laravel v8.78 和 MySQL 8.0.23 及以上版本, 你可以将选择的列定义为 "invisible"。被定义为 "invisible" 的列将被隐藏在 "select *" 语句中。
+
+然而，要做到这一点，我们必须在迁移中使用一个 `invisible()` 方法。
+```php
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+Schema::table('table', function (Blueprint $table) {
+    $table->string('secret')->nullable()->invisible();
+});
+```
+
+这将使选择的列从 "select *" 语句中隐藏
+
+由 [@CatS0up](https://github.com/CatS0up) 提供

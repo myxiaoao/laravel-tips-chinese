@@ -2,7 +2,7 @@
 
 ### Artisan 命令参数
 
-创建 Artisan 命令时，您可以各种方式询问输入：`$this->confirm()` （确认），`$this->perialipate()` (预期输入)，`$this->choice()`(选择)。
+创建 Artisan 命令时，您可以各种方式询问输入：`$this->confirm()` （确认），`$this->perialipate()` (预期输入)，`$this->choice()` (选择)。
 
 ```php
 // Yes or no?
@@ -28,11 +28,11 @@ php artisan down
 然后人们会看到默认的 503 页面。
 在 Laravel 8 里，你还可以提供的标识：
 
-用户将会重定向的路径地址
-预渲染的维护模式视图页面
-绕过维护模式的秘钥
-维护模式返回的状态吗
-每 X 秒重新加载页面
+- 用户将会重定向的路径地址
+- 预渲染的维护模式视图页面
+- 绕过维护模式的秘钥
+- 维护模式返回的状态吗
+- 每 X 秒重新加载页面
 
 ```bash
 php artisan down --redirect="/" --render="errors::503" --secret="1630542a-246b-4b66-afa1-dd72a4c43515" --status=200 --retry=60
@@ -86,7 +86,7 @@ Options:
 
 ### 从任意处使用 Artisan 命令
 
-你不仅可以在命令行中启动`Artisan` 命令，还可以携带参数地在代码中启动它，使用`Artisan::call()· 方法即可：
+你不仅可以在命令行中启动 `Artisan` 命令，还可以携带参数地在代码中启动它，使用 `Artisan::call()· 方法即可：
 
 ```php
 Route::get('/foo', function () {
@@ -98,3 +98,28 @@ Route::get('/foo', function () {
 });
 ```
 
+### 隐藏你的自定义命令
+如果你不想在 artisan 命令列表中显示一个特定的命令，请将 `hidden` 属性设置为 `true` 。
+```php
+class SendMail extends Command
+{
+    protected $signature = 'send:mail';
+    protected $hidden = true;
+}
+```
+
+如果你输入了 `php artisan`，你就不会在可用命令中看到 `send:mail`。
+
+由 [@sky_0xs](https://twitter.com/sky_0xs/status/1487921500023832579) 提供
+
+### 跳过方法
+Laravel的调度器中的跳过方法
+
+你可以在你的命令中使用 `skip` 来跳过一个执行过程
+```php
+$schedule->command('emails:send')->daily()->skip(function () {
+    return Calendar::isHoliday();
+});
+```
+
+由 [@cosmeescobedo](https://twitter.com/cosmeescobedo/status/1494503181438492675) 提供

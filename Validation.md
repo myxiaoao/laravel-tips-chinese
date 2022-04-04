@@ -48,7 +48,7 @@ class StoreBlogCategoryRequest extends FormRequest {
 
 ### 更改默认验证消息
 
-如果要更改特定字段和特定验证规则的默认验证错误消息，只需将 `messages()` 方法添加到` FormRequest `类中。
+如果要更改特定字段和特定验证规则的默认验证错误消息，只需将  `messages()` 方法添加到 `FormRequest` 类中。
 
 ```php
 class StoreUserRequest extends FormRequest
@@ -67,7 +67,7 @@ class StoreUserRequest extends FormRequest
 
 ### 预验证
 
-如果你想在默认的` Laravel `验证之前修改某个字段，或者，换句话说，“准备” 那个字段， `FormRequest `类中有一个方法 `prepareForValidation () `
+如果你想在默认的 `Laravel` 验证之前修改某个字段，或者，换句话说，“准备” 那个字段， `FormRequest` 类中有一个方法 `prepareForValidation () `
 
 ```php
 protected function prepareForValidation()
@@ -89,13 +89,13 @@ $request->validate([
 ]);
 ```
 
-如果你需要停止首次错误验证，可以设置`FormRequest` 类中`$stopOnFirstFailure`为`true`:
+如果你需要停止首次错误验证，可以设置 `FormRequest` 类中 `$stopOnFirstFailure` 为 `true`:
 
 ```php
 protected $stopOnFirstFailure = true;
 ```
 
-### 不使用validate或者FormRequest就抛出422
+### 不使用 validate 或者 FormRequest 就抛出 422
 
 如果您不使用 `validate()` 或 `Form Request`，但仍然需要使用相同的 `422` 状态码和错误结构抛出错误，那么可以手动抛出 `throw ValidationException::withMessages()`
 
@@ -137,9 +137,9 @@ if (! $user || ! Hash::check($request->password, $user->password)) {
 
 ### 使用属性设置首次验证失败时停止
 
-在`request`类中使用这个属性设置首次验证失败时停止。
+在 `request` 类中使用这个属性设置首次验证失败时停止。
 
-注意 这个跟 `Bail`规则不一样 只在单个规则失败时就停止
+注意 这个跟 `Bail` 规则不一样 只在单个规则失败时就停止
 
 ```php
 /**
@@ -150,21 +150,21 @@ if (! $user || ! Hash::check($request->password, $user->password)) {
 protected $stopOnFirstFailure = true;
 ```
 
-由 [@Sala7JR](https://twitter.com/Sala7JR/status/1436172331198603270)提供
+由 [@Sala7JR](https://twitter.com/Sala7JR/status/1436172331198603270) 提供
 
-### unique规则在软删除全局作用域中无效
+### unique 规则在软删除全局作用域中无效
 
-`Rule::unique` 默认不在软删除的全局范围内。但是`使用`withoutTrashed` 时可用。
+`Rule::unique` 默认不在软删除的全局范围内。但是使用`withoutTrashed` 时可用。
 
 ```php
 Rule::unique('users', 'email')->withoutTrashed();
 ```
 
-由 [@Zubairmohsin33](https://twitter.com/Zubairmohsin33/status/1438490197956702209)提供
+由 [@Zubairmohsin33](https://twitter.com/Zubairmohsin33/status/1438490197956702209) 提供
 
 ### sometimes方法允许你定义验证器在什么时候被应用
 
-`Validator::sometimes` 方法允许你定义验证器在什么时候被应用，基于提供的输入。
+`Validator::sometimes` 方法允许你定义验证器在什么时候被应用，基于提供的输入。  
 这个片段展示了如果购买的物品数量不够，如何禁止使用优惠券。
 
 ```php
@@ -197,11 +197,11 @@ $validator->sometimes('coupon', 'prohibited', function (Fluent $data) {
 $validator->validate();
 ```
 
-Tip given by [@cerbero90](https://twitter.com/cerbero90/status/1440226037972013056)
+由 [@cerbero90](https://twitter.com/cerbero90/status/1440226037972013056) 提供
 
 ### 数组元素验证
 
-如果你想要验证提交的数组元素，使用带`*`号的点符号。
+如果你想要验证提交的数组元素，使用带 `*` 号的点符号。
 
 ```php
 // say you have this array
@@ -223,11 +223,11 @@ $rules = [
 ];
 ```
 
-由[HydroMoon](https://github.com/HydroMoon)提供
+由 [HydroMoon](https://github.com/HydroMoon) 提供
 
 ### 提交自定义验证规则
 
-感谢`Rule::when` 我们可以指定提交验证规则。
+感谢 `Rule::when` 我们可以指定提交验证规则。
 
 下面例子我们可以验证用户是否真的可以对文章点赞。
 
@@ -242,11 +242,11 @@ public function rules()
 }
 ```
 
-由 [@cerbero90](https://twitter.com/cerbero90/status/1434426076198014976)提供
+由 [@cerbero90](https://twitter.com/cerbero90/status/1434426076198014976) 提供
 
 ### Password的defaults方法
 
-使用`Password::defaults`方法验证用户提供的密码时，可以强制执行特定规则。它包括要求字母、数字、符号等的选项。
+使用 `Password::defaults` 方法验证用户提供的密码时，可以强制执行特定规则。它包括要求字母、数字、符号等的选项。
 
 ```php
 class AppServiceProvider
@@ -268,20 +268,20 @@ request()->validate([
 ])
 ```
 
- [@mattkingshott](https://twitter.com/mattkingshott/status/1463190613260603395)提供
+由 [@mattkingshott](https://twitter.com/mattkingshott/status/1463190613260603395) 提供
 
 ### 表单验证重定向请求
 
-使用表单请求进行验证时，默认情况下，验证错误将重定向回上一页，但您可以覆盖它<br>
+使用表单请求进行验证时，默认情况下，验证错误将重定向回上一页，但您可以覆盖它  
 
-只需定义`$redirect`或`redirectRoute`的属性即可
+只需定义 `$redirect` 或 `redirectRoute` 的属性即可
 
 
 [Link to docs](https://laravel.com/docs/8.x/validation#customizing-the-redirect-location)
 
-### Mac验证规则
+### Mac 验证规则
 
-`Laravel 8.77`添加了新的`mac_address`规则
+`Laravel 8.77` 添加了新的 `mac_address` 规则
 
 ```php
 $trans = $this->getIlluminateArrayTranslator();
@@ -289,11 +289,11 @@ $validator = new Validator($trans, ['mac' => '01-23-45-67-89-ab'], ['mac' => 'ma
 $this->assertTrue($validator->passes());
 ```
 
- [@Teacoders] 提供
+由 [@Teacoders] 提供
 
 ### 验证顶级域名邮箱
 
-`email`验证规则将接受一个非顶级域名邮箱 (例子:`taylor@laravel`, `povilas@ldaily`)
+`email` 验证规则将接受一个非顶级域名邮箱 (例子:`taylor@laravel`, `povilas@ldaily`)
 
 但是你如果想确保邮箱必须有一个顶级域名 (例子:`taylor@laravel.com`, `povilas@ldaily.com`) 使用`email:filter`规则
 
@@ -304,4 +304,77 @@ $this->assertTrue($validator->passes());
 ],
 ```
 
- [@Chris1904](https://laracasts.com/discuss/channels/general-discussion/laravel-58-override-email-validation-use-57-rules?replyId=645613)提供
+由 [@Chris1904](https://laracasts.com/discuss/channels/general-discussion/laravel-58-override-email-validation-use-57-rules?replyId=645613) 提供
+
+### 新的数组验证规则 required_array_keys
+Laravel 8.82 增加了一个 `required_array_keys` 的验证规则，该规则检查所有指定的键是否存在于一个数组中。
+
+能通过验证的有效数据：
+```php
+$data = [
+    'baz' => [
+        'foo' => 'bar',
+        'fee' => 'faa',
+        'laa' => 'lee'
+    ],
+];
+
+$rules = [
+    'baz' => [
+        'array',
+        'required_array_keys:foo,fee,laa',
+    ],
+];
+
+$validator = Validator::make($data, $rules);
+$validator->passes(); // true
+```
+
+不能通过验证的有效数据：
+```php
+$data = [
+    'baz' => [
+        'foo' => 'bar',
+        'fee' => 'faa',
+    ],
+];
+
+$rules = [
+    'baz' => [
+        'array',
+        'required_array_keys:foo,fee,laa',
+    ],
+];
+
+$validator = Validator::make($data, $rules);
+$validator->passes(); // false
+```
+
+由 [@AshAllenDesign](https://twitter.com/AshAllenDesign/status/1488853052765478914) 提供
+
+### 验证信息中的占位符
+在 Laravel 9 中,如果你正在处理数组,你可以在验证信息中使用:position 占位符。
+
+将会输出 ："Please provide an amount for price #2"
+```php
+class CreateProductRequest extends FormRequest
+{
+    public function rules(): array
+    {
+        return  [
+            'title' => ['required', 'string'];
+            'description' => ['nullable', 'sometimes', 'string'],
+            'prices' => ['required', 'array'],
+            'prices.*.amount' => ['required', 'numeric'],
+            'prices.*.expired_at' => ['required', 'date'],
+        ];
+    }
+    
+    public function messages(): array
+    {
+        'prices.*.amount.required' => 'Please provide an amount for price #:position'
+    }
+}
+```
+
+由 [@mmartin_joo](https://twitter.com/mmartin_joo/status/1502299053635235842) 提供

@@ -1,6 +1,6 @@
 ## 邮件 
 
-### 测试邮件存入laravel.log
+### 测试邮件存入 laravel.log
 
 如果你想在你的应用中测试邮件内容但是无法或不愿意设置类似 `Mailgun` 的东西，使用 `.env` 参数 `MAIL_DRIVER=log` 然后所有的邮件都会被保存到 `storage/logs/laravel.log` 文件，而不是真实的发送。
 
@@ -17,7 +17,7 @@ Route::get('/mailable', function () {
 
 ### 不使用Mailables预览邮件
 
-不使用Mailables你也可以预览你的邮件。举个例子，当你创建通知的时候你可以指定你的邮件通知中可能用到的markdown文件。
+不使用 Mailables 你也可以预览你的邮件。举个例子，当你创建通知的时候你可以指定你的邮件通知中可能用到的 markdown 文件。
 
 ```php
 use Illuminate\Notifications\Messages\MailMessage;
@@ -27,7 +27,7 @@ Route::get('/mailable', function () {
 });
 ```
 
-你也可以使用``MailMessage` `对象提供的`view`方法和其他方法。
+你也可以使用 `MailMessage` 对象提供的 `view` 方法和其他方法。
 
 由 [@raditzfarhan](https://github.com/raditzfarhan)提供
 
@@ -42,7 +42,7 @@ class UserRegistrationEmail extends Notification {
 }
 ```
 
-然后您将收到一封主题为` 用户注册的电子邮件` 的电子邮件。
+然后您将收到一封主题为 `用户注册的电子邮件` 的电子邮件。
 
 ### 向任何人发送通知
 
@@ -55,3 +55,24 @@ Notification::route('mail', 'taylor@example.com')
         ->notify(new InvoicePaid($invoice));
 ```
 
+### 设置条件对象的属性
+可以在 MailMessage 通知中使用 `when()` 或 `unless()` 方法来设置条件对象属性。
+```php
+class InvoicePaid extends Notification
+{
+    public function toMail(User $user)
+    {
+        return (new MailMessage)
+            ->success()
+            ->line('We've received your payment)
+            ->when($user->isOnMonthlyPaymentPlan(), function (MailMessage $message) {
+                $message->action('Save 20% by paying yearly', route('account.billing'));
+            })
+            ->line('Thank you for using Unlock.sh');
+    }
+}
+```
+
+通过加载 `Illuminate\Support\Traits\Conditionable` trait，在你自己的类中使用 `when` 或 `unless` 方法。
+
+由 [@Philo01](https://twitter.com/Philo01/status/1503302749525528582) 提供

@@ -27,9 +27,9 @@ Route::domain('{username}.workspace.com')->group(function () {
 });
 ```
 
-### routes调用之后是什么
+### routes 调用之后是什么
 
-若你使用 [Laravel UI package](https://github.com/laravel/ui), 你可能想知道`Auth::routes()`定义之后真正的路由是什么?
+若你使用 [Laravel UI package](https://github.com/laravel/ui), 你可能想知道 `Auth::routes()` 定义之后真正的路由是什么?
 
 查看 `/vendor/laravel/ui/src/AuthRouteMethods.php`.
 
@@ -70,8 +70,6 @@ Auth::routes(); // no parameters
 
 但是你可以提供参数来启用或禁用真正的路由
 
-But you can provide parameters to enable o disable certain routes:
-
 ```php
 Auth::routes([
     'login'    => true,
@@ -83,9 +81,9 @@ Auth::routes([
 ]);
 ```
 
-由 [suggestion](https://github.com/LaravelDaily/laravel-tips/pull/57) by [MimisK13](https://github.com/MimisK13)提供
+[suggestion](https://github.com/LaravelDaily/laravel-tips/pull/57) 由 [MimisK13](https://github.com/MimisK13) 提供
 
-### 路由模型绑定-你可以定义一个Key
+### 路由模型绑定-你可以定义一个 Key
 
 你可以像 `Route::get('api/users/{user}', function (App\User $user) { … }` 这样来进行路由模型绑定，但不仅仅是 ID 字段，如果你想让 {user} 是 username，你可以把它放在模型中：
 
@@ -111,7 +109,7 @@ Route::get('page', 'PageController@action');
 Route::get('page', [\App\Http\Controllers\PageController::class, 'action']);
 ```
 
-这样，你就可以在 `PhpStorm`中点击 `PageController` 来跳转到控制器定义，而不是手动去搜索它
+这样，你就可以在 `PhpStorm` 中点击 `PageController` 来跳转到控制器定义，而不是手动去搜索它
 
 或者你想要让路由的定义更简洁，你可以在路由文件的开始提前引入控制器的类。
 
@@ -140,7 +138,7 @@ Route::fallback(function() {
 
 ### 使用正则进行路由参数验证
 
-我们可以在路由中使用 `where`参数 来直接验证参数。一个典型的例子是，当使用语言区域的参数来作为路由前缀时，像是 `fr/blog` 和 `en/article/333` 等，这时我们如何来确保这两个首字母没有被用在其他语言呢？
+我们可以在路由中使用 `where` 参数 来直接验证参数。一个典型的例子是，当使用语言区域的参数来作为路由前缀时，像是 `fr/blog` 和 `en/article/333` 等，这时我们如何来确保这两个首字母没有被用在其他语言呢？
 
 `routes/web.php`:
 
@@ -357,9 +355,6 @@ public function show(Product $product) {
 但是你有一个从属关系，这时候就不能使用 `$product->with('category')` 预加载了吗？ 
 你当然可以，使用 `->load()` 来加载关系
 
-But you have a belongsTo relationship, and cannot use $product->with('category') eager loading?<br>
-You actually can! Load the relationship with `->load()`
-
 ```php
 public function show(Product $product) {
     $product->load('category');
@@ -388,7 +383,7 @@ public function boot()
 .
 这样会生成诸如  `/p`, `/p/{id}`, `/p/{id}/edit` 等等，但是你可以这样调用它们：
 
-`route('products.index)`
+`route('products.index)` 
 `route('products.create)`
 等等
 
@@ -398,7 +393,7 @@ Route::resource('p', \App\Http\Controllers\ProductController::class)->names('pro
 
 ### 更简单地高亮你的导航栏
 
-使用`Route::is('route-name')`来更简单的高亮你的导航栏
+使用 `Route::is('route-name')` 来更简单的高亮你的导航栏
 
 ```html
 <ul>
@@ -411,9 +406,9 @@ Route::resource('p', \App\Http\Controllers\ProductController::class)->names('pro
 </ul>
 ```
 
-由 [@anwar_nairi](https://twitter.com/anwar_nairi/status/1443893957507747849)提供
+由 [@anwar_nairi](https://twitter.com/anwar_nairi/status/1443893957507747849) 提供
 
-### 使用route辅助函数生成绝对路径
+### 使用 route 辅助函数生成绝对路径
 
 ```php
 route('page.show', $page->id);
@@ -423,7 +418,7 @@ route('page.show', $page->id, false);
 // /pages/1
 ```
 
-由 [@oliverds_](https://twitter.com/oliverds_/status/1445796035742240770)提供
+由 [@oliverds_](https://twitter.com/oliverds_/status/1445796035742240770) 提供
 
 ### 为你的每个模型重写路由绑定解析器
 
@@ -445,11 +440,11 @@ public function resolveRouteBinding($value, $field = null)
 }
 ```
 
-由 [@Philo01](https://twitter.com/Philo01/status/1447539300397195269)提供
+由 [@Philo01](https://twitter.com/Philo01/status/1447539300397195269) 提供
 
 ### 如果你需要一个公共URL但是你想让他们更安全
 
-如果你需要一个公共URL但是你想让他们更安全，使用 ` Laravel signed URL`
+如果你需要一个公共URL但是你想让他们更安全，使用 `Laravel signed URL`
 
 ```php
 class AccountController extends Controller
@@ -476,13 +471,13 @@ class AccountController extends Controller
 }
 ```
 
-由 [@anwar_nairi](https://twitter.com/anwar_nairi/status/1448239591467589633)提供
+由 [@anwar_nairi](https://twitter.com/anwar_nairi/status/1448239591467589633) 提供
 
-### 在中间件中使用Gate
+### 在中间件中使用 Gate
 
-你可以在中间件中使用在 `App\Providers\AuthServiceProvider`设置的`Gate` 
+你可以在中间件中使用在 `App\Providers\AuthServiceProvider` 设置的 `Gate` 
 
-怎么做呢?你可以在路由中添加`can:`和必要`gate`的名字
+怎么做呢?你可以在路由中添加 `can:` 和必要 `gate` 的名字
 
 ```php
 Route::put('/post/{post}', function (Post $post) {
@@ -506,10 +501,62 @@ Route::get('/example', fn () => User::all());
 ```
 
 ### 路由视图
-使用`Route::view($uri , $bladePage)`直接返回view 而不需要控制器方法
+使用 `Route::view($uri , $bladePage)` 直接返回 view 而不需要控制器方法
 
 
 ```php
 //this will return home.blade.php view
 Route::view('/home', 'home');
+```
+
+### 路由目录代替路由文件
+
+你可以创建一个 */routes/web/* 目录，只在  */routes/web.php* 中填写。
+
+```php
+foreach(glob(dirname(__FILE__).'/web/*', GLOB_NOSORT) as $route_file){
+    include $route_file;
+}
+```
+
+现在，*/routes/web/* 内的每个文件都作为一个路由文件，你可以将你的路由组织到不同的文件中。
+
+### 路由资源分组
+如果你的路由有很多资源控制器，你可以将它们分组并调用一个Route::resources()，而不是许多单一的Route::resource()语句。
+```php
+Route::resources([
+    'photos' => PhotoController::class,
+    'posts' => PostController::class,
+]);
+```
+
+### 自定义路由绑定
+你知道你可以在 Laravel 中自定义路由绑定吗? 
+
+在这个例子中，我需要通过 slug 来解析职务。但是 slug 不是唯一的，因为多个用户可以有名为 'Foo' 的职务
+
+所以我配置了 Laravel 应该如何从路由参数中解析它们
+```php
+class RouteServiceProvider extends ServiceProvider
+{
+    public const HOME = '/dashboard';
+    
+    public function boot()
+    {
+        Route::bind('portfolio', function (string $slug) {
+            return Portfolio::query()
+                ->whereBelongsto(request()->user())
+                ->whereSlug($slug)
+                ->firstOrFail();
+        });
+    }
+}
+```
+
+```php
+Route::get('portfolios/{portfolio}', function (Portfolio $portfolio) {
+    /*
+     * The $portfolio will be the result of the query defined in the RouteServiceProvider
+     */
+})
 ```

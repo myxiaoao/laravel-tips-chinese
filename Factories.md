@@ -43,7 +43,7 @@ $users = User::factory()
 
 ### 使用带关联关系的工厂
 
-当使用带关联关系的工厂时，`laravel`也提供了魔术方法:
+当使用带关联关系的工厂时，`laravel` 也提供了魔术方法:
 
 ```php
 // magic factory relationship methods
@@ -57,7 +57,7 @@ User::factory()->has(Post::factory()->count(3))->create();
 
 ### 创建模型而不触发任意事件
 
-有时，您可能希望`update`给定的模型，而不发送任何事件。您可以使用`updateQuietly`方法来完成此操作
+有时，您可能希望 `update` 给定的模型，而不发送任何事件。您可以使用 `updateQuietly` 方法来完成此操作
 
 ```php
 Post::factory()->createOneQuietly();
@@ -70,7 +70,7 @@ Post::factory()->createManyQuietly([
 
 ### 有用的for方法
 
-Laravel工厂有一个非常有用的`for`方法。您可以使用它来创建`belongsTo`关系。
+Laravel工厂有一个非常有用的 `for` 方法。您可以使用它来创建 `belongsTo` 关系。
 
 ```php
 public function run()
@@ -82,4 +82,4 @@ public function run()
 }
 ```
 
-由 [@mmartin_joo](https://twitter.com/mmartin_joo/status/1461002439629361158)提供
+由 [@mmartin_joo](https://twitter.com/mmartin_joo/status/1461002439629361158) 提供

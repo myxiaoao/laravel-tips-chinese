@@ -55,7 +55,6 @@ public function setPasswordAttribute($value)
 
 ### 覆盖超级管理员的权限
 
-
 如果你已经定义了网关（Gates）但是又想要覆盖超级管理员的所有权限。 给超级管理员所有权限，你可以在  `AuthServiceProvider.php` 文件中用 `Gate::before()` 语句拦截网关（Gates）。
 
 ```php

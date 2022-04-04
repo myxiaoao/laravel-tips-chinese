@@ -40,11 +40,11 @@ public function handle(Request $request, Closure $next)
 }
 ```
 
-由 [@LaraibiM](https://twitter.com/LaraibiM/status/1437857603263078421)提供
+由 [@LaraibiM](https://twitter.com/LaraibiM/status/1437857603263078421) 提供
 
 ### 快速输出Query的sql
 
-如果你想快速输出一个 `Eloquent query`的sql 你可以调用 `toSql()`方法如下:
+如果你想快速输出一个 `Eloquent query` 的sql 你可以调用 `toSql()` 方法如下:
 
 ```php
 $invoices = Invoice::where('client', 'James pay')->toSql();
@@ -53,11 +53,11 @@ dd($invoices)
 // select * from `invoices` where `client` = ? 
 ```
 
- [@devThaer](https://twitter.com/devThaer/status/1438816135881822210)提供
+ 由 [@devThaer](https://twitter.com/devThaer/status/1438816135881822210) 提供
 
 ### 开发模式打印所有数据库查询
 
-如果要在开发期间记录所有数据库查询，请将此代码段添加到`AppServiceProvider`
+如果要在开发期间记录所有数据库查询，请将此代码段添加到 `AppServiceProvider`
 
 ```php
 public function boot()
@@ -70,5 +70,5 @@ public function boot()
 }
 ```
 
- [@mmartin_joo](https://twitter.com/mmartin_joo/status/1473262634405449730)提供
+由 [@mmartin_joo](https://twitter.com/mmartin_joo/status/1473262634405449730) 提供
 

@@ -2,7 +2,7 @@
 
 ### 无符号整型
 
-作为迁移的外键，请使用 `unsignedInteger()`  类型或 `integer()->unsigned()` 来替代 `integer()` ，否则你会得到 SQL 错误。
+作为迁移的外键，请使用 `unsignedInteger()`  类型或 `integer()->unsigned()` 来替代 `integer()` ，否则将得到 SQL 错误。
 
 ```php
 Schema::create('employees', function (Blueprint $table) {
@@ -97,7 +97,8 @@ Source: [Steve O on Twitter](https://twitter.com/stephenoldham/status/1353647972
 
 ### 在另一列的后面创建一列
 
-注意： 仅 MySQL 可用
+> 注意：仅 MySQL 可用   
+
 如果你要在已经存在的表里增加一个新列，这个列不 “必须” 成为最后一列，你可以指定这个列创建在哪个列的后面
 
 ```php
@@ -174,15 +175,15 @@ class WhateverYouWant extends Migration
 php artisan migrate --pretend
 ```
 
- [@zarpelon](https://github.com/zarpelon) 提供
+由 [@zarpelon](https://github.com/zarpelon) 提供
 
 ### 匿名迁移
 
-`Laravel`团队发布了`Laravel 8.37`版本 支持匿名迁移，解决了迁移命名冲突的问题。
+`Laravel` 团队发布了 `Laravel 8.37` 版本 支持匿名迁移，解决了迁移命名冲突的问题。
 
 这个问题的核心是 如果多个迁移有相同的类名 当尝试重新创建数据库时可能会导致问题
 
-以下是一个来自 `pr `的例子
+以下是一个来自 `pr ` 的例子
 
 ```php
 use Illuminate\Database\Migrations\Migration;
@@ -206,7 +207,7 @@ return new class extends Migration {
 };
 ```
 
-由 [@nicksdot](https://twitter.com/nicksdot/status/1432340806275198978)提供
+由 [@nicksdot](https://twitter.com/nicksdot/status/1432340806275198978) 提供
 
 ### 给迁移添加注释
 
@@ -220,7 +221,7 @@ $table->unsignedInteger('interval')
     ->comment('This column is used for indexing.')   
 ```
 
-由 [@Zubairmohsin33](https://twitter.com/Zubairmohsin33/status/1442345998790107137)提供
+由 [@Zubairmohsin33](https://twitter.com/Zubairmohsin33/status/1442345998790107137) 提供
 
 ### 表名表字段检测
 
@@ -235,5 +236,5 @@ if (Schema::hasColumn('users', 'email')) {
 }
 ```
 
- [@dipeshsukhia](https://github.com/dipeshsukhia)提供
+由 [@dipeshsukhia](https://github.com/dipeshsukhia) 提供
 

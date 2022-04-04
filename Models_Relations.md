@@ -18,7 +18,7 @@ public function productsByName()
 
 ### 在 Eloquent 关系中添加条件
 
-假如你经常在模型关联关系中添加某些相同的 `where `条件，可以单独创建一个方法。
+假如你经常在模型关联关系中添加某些相同的 `where` 条件，可以单独创建一个方法。
 
 Model:
 
@@ -54,7 +54,7 @@ $authors = Author::has('books.ratings')->get();
 
 ### 一对多关系中获取符合指定数量的信息
 
-在`hasMany()`中，你可以通过条件过滤，获取符合的数据。
+在 `hasMany()` 中，你可以通过条件过滤，获取符合的数据。
 
 ```php
 // Author -> hasMany(Book::class)
@@ -63,7 +63,7 @@ $authors = Author::has('books', '>', 5)->get();
 
 ### 默认模型
 
-你可以在 `belongsTo `关系中设置返回一个默认的模型，从而避免类似于使用 `{{ $post->user->name }}` 当 $post->user 不存在的时候，引起的致命的错误
+你可以在 `belongsTo` 关系中设置返回一个默认的模型，从而避免类似于使用 `{{ $post->user->name }}` 当 $post->user 不存在的时候，引起的致命的错误
 
 ```php
 public function user()
@@ -86,7 +86,7 @@ $post->comments()->saveMany([
 
 ### 多层级预加载
 
-在 `Laravel `中，你可以在一条语句中预加载多个层级，在这个例子中，我们不仅加载作者关系，而且还加载作者模型上的国家关系。
+在 `Laravel` 中，你可以在一条语句中预加载多个层级，在这个例子中，我们不仅加载作者关系，而且还加载作者模型上的国家关系。
 
 ```php
 $users = App\Book::with('author.country')->get();
@@ -94,7 +94,7 @@ $users = App\Book::with('author.country')->get();
 
 ### 预加载特定字段
 
-你可以在 `Laravel `中预加载并指定关联中的特定字段。
+你可以在 `Laravel` 中预加载并指定关联中的特定字段。
 
 ```php
 $users = App\Book::with('author:id,name')->get();
@@ -186,7 +186,7 @@ class ProductTag extends Model
 
 ### 使用 hasMany 代替 belongsTo
 
-在关联关系中，如果创建子关系的记录中需要用到父关系的 ID ，那么使用  `hasMany ` 比使用 `belongsTo `更简洁。
+在关联关系中，如果创建子关系的记录中需要用到父关系的 ID ，那么使用  `hasMany` 比使用 `belongsTo` 更简洁。
 
 ```php
 // if Post -> belongsTo(User), and User -> hasMany(Post)...
@@ -206,7 +206,7 @@ auth()->user()->posts()->create([
 
 ### 重命名 pivot 表名称
 
-如果你想要重命名`pivot`并用其他的什么方式来调用关系，你可以在你的关系声明中使用 `->as('name')` 来为关系取名。
+如果你想要重命名 `pivot` 并用其他的什么方式来调用关系，你可以在你的关系声明中使用 `->as('name')` 来为关系取名。
 模型 ：
 
 ```php
@@ -425,7 +425,7 @@ class User
 }
 ```
 
-由 [@anwar_nairi](https://twitter.com/anwar_nairi/status/1441718371335114756)提供
+由 [@anwar_nairi](https://twitter.com/anwar_nairi/status/1441718371335114756) 提供
 
 ### 新的 Eloquent 查询构建器方法 whereBelongsTo()
 
@@ -449,7 +449,7 @@ Post::query()
 $query->whereBelongsTo($author, 'author')
 ```
 
-由 [@danjharrin](https://twitter.com/danjharrin/status/1445406334405459974)提供
+由 [@danjharrin](https://twitter.com/danjharrin/status/1445406334405459974) 提供
 
 ### 使用is()方法比较一对一关系模型
 
@@ -464,7 +464,7 @@ $post->author->is($user);
 $post->author()->is($user);
 ```
 
-由 [@PascalBaljet](https://twitter.com/pascalbaljet)提供
+由 [@PascalBaljet](https://twitter.com/pascalbaljet) 提供
 
 ### whereHas多连接
 
@@ -493,11 +493,11 @@ $posts = Post::whereHas('user', function ($query) use ($request) {
   })->get();
 ```
 
-由 [@adityaricki](https://twitter.com/adityaricki2)提供
+由 [@adityaricki](https://twitter.com/adityaricki2) 提供
 
 ### 更新存在的中间记录
 
-如果要更新表上存在中间记录，请使用`updateExistingPivot`而不是`syncWithPivotValues`。
+如果要更新表上存在中间记录，请使用 `updateExistingPivot` 而不是`syncWithPivotValues`。
 
 ```php
 // Migrations
@@ -513,11 +513,11 @@ $user->roles()->updateExistingPivot(
 );
 ```
 
- [@sky_0xs](https://twitter.com/sky_0xs/status/1461414850341621760)提供
+由 [@sky_0xs](https://twitter.com/sky_0xs/status/1461414850341621760) 提供
 
 ### 获取最新或最老数据的关系
 
-在一个模型中，我们可以定义一个关系，该关系将获得另一个关系的最新（或最旧）项。
+Laravel 8.42 更新，一个模型中我们可以定义一个关系，该关系将获得另一个关系的最新（或最旧）项。
 
 ```php
 public function historyItems(): HasMany
@@ -526,6 +526,7 @@ public function historyItems(): HasMany
         ->hasMany(ApplicationHealthCheckHistoryItem::class)
         ->orderByDesc('created_at');
 }
+
 public function latestHistoryItem(): HasOne
 {
     return $this
@@ -533,6 +534,49 @@ public function latestHistoryItem(): HasOne
         ->latestOfMany();
 }
 ```
+
+### 用 ofMany 代替你的自定义查询
+```php
+class User extends Authenticable {
+    // Get most popular post of user
+    public function mostPopularPost() {
+        return $this->hasOne(Post::class)->ofMany('like_count', 'max');
+    }
+}
+```
+
+由 [@LaravelEloquent](https://twitter.com/LaravelEloquent/status/1493324310328578054) 提供
+
+### 在关系上使用 orWhere 时避免数据泄漏
+```php
+$user->posts()
+    ->where('active', 1)
+    ->orWhere('votes', '>=', 100)
+    ->get();
+```
+
+所有投票数大于或等于 100 的帖子都会被返回。
+```sql
+select * from posts where user_id = ? and active = 1 or votes >= 100
+```
+
+```php
+use Illuminate\Database\Eloquent\Builder;
+
+$users->posts()
+    ->where(function (Builder $query) {
+        return $query->where('active', 1)
+                    ->orWhere('votes', '>=', 100);
+    })
+    ->get();
+```
+
+返回投票数大于或等于 100 的用户帖子。
+```sql
+select * from posts where user_id = ? and (active = 1 or votes >= 100)
+```
+
+由 [@BonnickJosh](https://twitter.com/BonnickJosh/status/1494779780562096139) 提供
 
 
 

@@ -18,7 +18,7 @@
 @endforeach
 ```
 
-同样也有诸如 `$loop->iteration` 或 `$loop->count` 等属性。可以在 [官方文档](https://laravel.com/docs/master/blade#the-loop-variable)中查看更多相关内容。
+同样也有诸如 `$loop->iteration` 或 `$loop->count` 等属性。可以在 [官方文档](https://laravel.com/docs/master/blade#the-loop-variable) 中查看更多相关内容。
 
 ### 视图是否存在
 
@@ -120,7 +120,7 @@ public function boot()
 }
 ```
 
-### 视图指令IncludeIf IncludeWhen IncludeFirst
+### 视图指令 IncludeIf IncludeWhen IncludeFirst
 
 如果你不确定 Blade 文件是否存在，你可以使用这些条件指令。
 仅当 Blade 文件存在时载入 header：
@@ -141,7 +141,7 @@ public function boot()
 @includeFirst('adminlte.header', 'default.header')
 ```
 
-### 使用Laravel Blade-X 变量绑定节省更多空间
+### 使用 Laravel Blade-X 变量绑定节省更多空间
 
 ```php
 // Using include, the old way
@@ -154,7 +154,7 @@ public function boot()
 <x-post :link="$post->title" />
 ```
 
-由 [@anwar_nairi](https://twitter.com/anwar_nairi/status/1442441888787795970)提供
+由 [@anwar_nairi](https://twitter.com/anwar_nairi/status/1442441888787795970) 提供
 
 ### Blade 组件属性
 
@@ -177,7 +177,7 @@ public function boot()
 <x-button rounded>Submit</x-button>
 ```
 
-由 [@godismyjudge95](https://twitter.com/godismyjudge95/status/1448825909167931396)提供
+由 [@godismyjudge95](https://twitter.com/godismyjudge95/status/1448825909167931396) 提供
 
 ### Blade类型提示
 
@@ -191,7 +191,7 @@ public function boot()
 </div>
 ```
 
-由 [@freekmurze](https://twitter.com/freekmurze/status/1455466663927746560)提供
+由 [@freekmurze](https://twitter.com/freekmurze/status/1455466663927746560) 提供
 
 ### 组件语法提示
 
@@ -203,7 +203,7 @@ public function boot()
 <x-navbar :title="$title"/>
 ```
 
-由 [@sky_0xs](https://twitter.com/sky_0xs/status/1457056634363072520)提供
+由 [@sky_0xs](https://twitter.com/sky_0xs/status/1457056634363072520) 提供
 
 ### 自动高亮导航链接
 
@@ -261,11 +261,11 @@ class NavLink extends Component
 <x-nav-link :href="route('projects.index')" :active="$tab = 'projects'">Projects</x-nav-link>
 ```
 
-[@mpskovvang](https://twitter.com/mpskovvang/status/1459646197635944455)提供
+由 [@mpskovvang](https://twitter.com/mpskovvang/status/1459646197635944455) 提供
 
 ### 简化循环
 
-你知道Blade`@each`指令可以帮助清理模板中的循环吗？
+你知道 Blade `@each` 指令可以帮助清理模板中的循环吗？
 
 ```blade
 // good
@@ -279,13 +279,13 @@ class NavLink extends Component
 @each('partials.item', $items, 'item')
 ```
 
-[@kirschbaum_dev](https://twitter.com/kirschbaum_dev/status/1463205294914297861)提供
+由 [@kirschbaum_dev](https://twitter.com/kirschbaum_dev/status/1463205294914297861) 提供
 
-### 整理blade视图的简单方法
+### 整理 blade 视图的简单方法
 
-整理刀片视图的简单方法<br>
+整理刀片视图的简单方法 
 
-使用`forelse·，而不是嵌套在`if`语句中的`foreach`
+使用 `forelse`，而不是嵌套在 `if` 语句中的 `foreach`
 
 ```blade
 <!-- if/loop combination -->
@@ -308,4 +308,20 @@ class NavLink extends Component
 @endforelse
 ```
 
-由 [@alexjgarrett]提供
+由 [@alexjgarrett] 提供
+
+### 已检查的 Blade 指令
+在 Laravel 9中, 你将能够使用很酷的新 "checked" Blade 指令。
+
+这将是一个很好的补充，我们可以用它来清理一下我们的 Blade 视图
+```php
+// Before Laravel 9:
+<input type="radio" name="active" value="1" {{ old('active', $user->active) ? 'checked' : '' }}/>
+<input type="radio" name="active" value="0" {{ old('active', $user->active) ? '' : 'checked' }}/>
+
+// Laravel 9
+<input type="radio" name="active" value="1" @checked(old('active', $user->active))/>
+<input type="radio" name="active" value="0" @checked(!old('active', $user->active))/>
+```
+
+由 [@AshAllenDesign](https://twitter.com/AshAllenDesign/status/1489567000812736513) 提供
