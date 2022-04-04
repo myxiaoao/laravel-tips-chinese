@@ -1,10 +1,5 @@
 ## API (4 提示)
 
-  - [API 返回一切正常](#api-返回一切正常)
-  - [去掉额外的内部数据包装](#去掉额外的内部数据包装)
-  - [避免N+1查询](#避免n1查询)
-  - [从Authorizationheader中获取BearerToken](#从authorizationheader中获取bearertoken)
-
 
 由 [@phillipmwaniki](https://twitter.com/phillipmwaniki/status/1445230637544321029)提供
 

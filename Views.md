@@ -1,20 +1,5 @@
 ## 视图 (15 提示)
 
-  - [foreach 语句中的 $loop 变量](#foreach-语句中的-loop-变量)
-  - [视图是否存在](#视图是否存在)
-  - [错误代码视图页面](#错误代码视图页面)
-  - [脱离控制器的视图](#脱离控制器的视图)
-  - [Blade @auth 指令](#blade-auth-指令)
-  - [Blade 视图中的二级 $loop 变量](#blade-视图中的二级-loop-变量)
-  - [创建你自己的 Blade 指令](#创建你自己的-blade-指令)
-  - [视图指令IncludeIf IncludeWhen IncludeFirst](#视图指令includeif-includewhen-includefirst)
-  - [使用Laravel Blade-X 变量绑定节省更多空间](#使用laravel-blade-x-变量绑定节省更多空间)
-  - [Blade 组件属性](#blade-组件属性)
-  - [Blade类型提示](#blade类型提示)
-  - [组件语法提示](#组件语法提示)
-  - [自动高亮导航链接](#自动高亮导航链接)
-  - [简化循环](#简化循环)
-  - [整理blade视图的简单方法](#整理blade视图的简单方法)
 
 ### foreach 语句中的 $loop 变量
 

@@ -1,10 +1,5 @@
 ## 邮件 (5 提示)
 
-  - [测试邮件存入laravel.log](#测试邮件存入laravellog)
-  - [预览邮件](#预览邮件)
-  - [不使用Mailables预览邮件](#不使用mailables预览邮件)
-  - [Laravel 通知中的默认邮件主题](#laravel-通知中的默认邮件主题)
-  - [向任何人发送通知](#向任何人发送通知)
 
 ### 测试邮件存入laravel.log
 
