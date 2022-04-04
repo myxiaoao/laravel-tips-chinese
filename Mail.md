@@ -1,12 +1,10 @@
-## 邮件
+## 邮件 (5 提示)
 
-⬆️ [回到顶部](../README-zh.md) ⬅️ [上一个 (授权)](./Auth.md) ➡️ [下一个 (Artisan)](./Artisan.md)
-
-1. [测试邮件存入laravel.log](#测试邮件存入laravel.log)
-2. [预览邮件](#预览邮件)
-3. [不使用Mailables预览邮件](#不使用Mailables预览邮件)
-4. [Laravel 通知中的默认邮件主题](#Laravel-通知中的默认邮件主题)
-5. [向任何人发送通知](#向任何人发送通知)
+  - [测试邮件存入laravel.log](#测试邮件存入laravellog)
+  - [预览邮件](#预览邮件)
+  - [不使用Mailables预览邮件](#不使用mailables预览邮件)
+  - [Laravel 通知中的默认邮件主题](#laravel-通知中的默认邮件主题)
+  - [向任何人发送通知](#向任何人发送通知)
 
 ### 测试邮件存入laravel.log
 

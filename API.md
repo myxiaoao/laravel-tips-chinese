@@ -1,10 +1,9 @@
-## API
+## API (4 提示)
 
-⬆️ [回到顶部](../README-zh.md) ⬅️ [上一个 (日志与调试)](./Log_and_Debug.md) ➡️ [下一个 (其他)](./Other.md)
-
-1. [API 返回一切正常](#API-返回一切正常)
-2. [去掉额外的内部数据包装](#去掉额外的内部数据包装)
-3. [API resource中避免N+1查询](#避免N+1查询)
+  - [API 返回一切正常](#api-返回一切正常)
+  - [去掉额外的内部数据包装](#去掉额外的内部数据包装)
+  - [避免N+1查询](#避免n1查询)
+  - [从Authorizationheader中获取BearerToken](#从authorizationheader中获取bearertoken)
 
 
 由 [@phillipmwaniki](https://twitter.com/phillipmwaniki/status/1445230637544321029)提供

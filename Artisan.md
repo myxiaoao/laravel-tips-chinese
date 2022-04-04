@@ -1,12 +1,10 @@
-## Artisan
+## Artisan (5 提示)
 
-⬆️ [回到顶部](../README-zh.md) ⬅️ [上一个 (邮件)](./Mail.md) ➡️ [下一个 (工厂)](./Factories.md)
-
-1. [Artisan 命令参数](#Artisan-命令参数)
-2. [维护模式](#维护模式)
-3. [Artisan 命令行帮助](#Artisan-命令行帮助)
-4. [确认 Laravel 的版本](#确认-Laravel-的版本)
-5. [从任意处使用 Artisan 命令](#从任意处使用-Artisan-命令)
+  - [Artisan 命令参数](#artisan-命令参数)
+  - [维护模式](#维护模式)
+  - [Artisan 命令行帮助](#artisan-命令行帮助)
+  - [确认 Laravel 的版本](#确认-laravel-的版本)
+  - [从任意处使用 Artisan 命令](#从任意处使用-artisan-命令)
 
 ### Artisan 命令参数
 
