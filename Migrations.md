@@ -125,7 +125,7 @@ Schema::table('users', function (Blueprint $table) {
 
 ### 为已经存在的表生成迁移文件
 
-如果你要为已经存的表生成迁移文件，而且你想让 Lavarel 来为你生成 Schema::table ()  代码，那么，在命令后面加入  "_in_xxxxx_table" 或"_to_xxxxx_table"，或者指明 "--table" 参数。
+如果你要为已经存的表生成迁移文件，而且你想让 Lavarel 来为你生成 Schema::table ()  代码，那么，在命令后面加入  "\_in_xxxxx_table" 或"\_to_xxxxx_table"，或者指明 "--table" 参数。
 `php artisan make:migration change_fields_products_table` generates empty class
 
 ```php
@@ -238,3 +238,18 @@ if (Schema::hasColumn('users', 'email')) {
 
 由 [@dipeshsukhia](https://github.com/dipeshsukhia) 提供
 
+### 使用 After 方法中对列进行分组
+
+在你的迁移中，可以使用 after 方法在另一列后面添加多个列。
+
+```php
+Schema::table('uers', function (Blueprint $table) {
+    $table->after('password', function ($table) {
+        $table->string('address_line1');
+        $table->string('address_line2');
+        $table->string('city');
+    });
+});
+```
+
+由 [@ncosmeescobedo](https://twitter.com/cosmeescobedo/status/1512233993176973314) 提供
