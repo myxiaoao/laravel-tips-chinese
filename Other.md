@@ -986,3 +986,58 @@ Route::get('redirectRoute', function() {
 
 由 [@CatS0up](https://github.com/CatS0up) 提供
 
+### 当队列任务关闭时，暂停一项执行时间较长的队列
+
+当执行时间较长的队列，如果你使用以下方法退出队列任务：
+- 直接关闭任务；
+- 发送信号 **SIGTERM** (**SIGINT** for Horizon)；
+- 按键 `CTRL + C` (Linux/Windows)。
+
+那么工作进程在做某事时可能会被中止。
+
+通过检查 `app('queue.worker')->shouldQuit`，我们可以判断 worker 是否正在关闭。这样，我们就可以保存当前的进程并重新发出队列，这样当队列任务者再次运行时，就可以从它退出的地方继续运行。
+
+这在容器化世界（Kubernetes、Docker等）中非常有用，因为容器会随时被销毁和重新创建。
+
+```php
+<?php
+namespace App\Jobs;
+use App\Models\User;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+class MyLongJob implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    public $timeout = 3600;
+    private const CACHE_KEY = 'user.last-process-id';
+    public function handle()
+    {
+        $processedUserId = Cache::get(self::CACHE_KEY, 0); // Get last processed item id
+        $maxId = Users::max('id');
+        if ($processedUserId >= $maxId) {
+            Log::info("All users have already been processed!");
+            return;
+        }
+        while ($user = User::where('id', '>', $processedUserId)->first()) {
+            Log::info("Processing User ID: {$user->id}");
+            // Your long work here to process user
+            // Ex. Calling Billing API, Preparing Invoice for User etc.
+            $processedUserId = $user->id;
+            Cache::put(self::CACHE_KEY, $processedUserId, now()->addSeconds(3600)); // Updating last processed item id
+            if (app('queue.worker')->shouldQuit) {
+                $this->job->release(60); // Requeue the job with delay of 60 seconds
+                break;
+            }
+        }
+        Log::info("All users have processed successfully!");
+    }
+}
+```
+
+由 [@a-h-abid](https://github.com/a-h-abid) 提供
+

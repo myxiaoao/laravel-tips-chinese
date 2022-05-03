@@ -259,6 +259,7 @@ $users = User::find([1,2,3], ['first_name', 'email']);
 
 由 [@tahiriqbalnajam](https://github.com/tahiriqbalnajam) 提供
 
+
 ### 按照键查找
 
 您还可以使用 `whereKey()` 方法根据您指定的主键查找多条记录。(默认 `id` 但是你可以在 Eloquent 模型中覆盖掉)
@@ -585,6 +586,16 @@ return Product::whereIn('id', $this->productIDs)->get();
 ```php
 return Product::find($this->productIDs)
 ```
+
+如果是整数使用 "whereIntegerInRaw" 比 "whereIn "快。
+
+```php
+Product::whereIn('id', range(1, 50))->get();
+// You can do this
+Product::whereIntegerInRaw('id', range(1, 50))->get();
+```
+
+由 [@sachinkiranti](https://raisachin.com.np) 提供
 
 ### 失败时执行任何操作
 
